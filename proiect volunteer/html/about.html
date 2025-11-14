@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — Volunteer Match</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <style>
+    /* About specific styles */
+    .about-hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .about-hero__title {
+      font-size: 56px;
+      font-weight: 800;
+      margin: 0 0 20px;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .about-hero__subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* Mission section */
+    .mission-section {
+      padding: 60px 0;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .mission-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .mission-card:hover::before {
+      left: 100%;
+    }
+
+    .mission-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+      transform: translateY(-10px) scale(1.02);
+    }
+
+    .mission-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: float-icon 3s ease-in-out infinite;
+    }
+
+    @keyframes float-icon {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .mission-card:hover .mission-icon {
+      transform: scale(1.2) rotate(5deg);
+      transition: all 0.3s ease;
+    }
+
+    .mission-card h3 {
+      font-size: 24px;
+      margin: 0 0 15px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .mission-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Stats section */
+    .stats-section {
+      padding: 60px 0;
+      background: rgba(59, 130, 246, 0.05);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .stat-item {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 0.1s; }
+    .stat-item:nth-child(2) { animation-delay: 0.2s; }
+    .stat-item:nth-child(3) { animation-delay: 0.3s; }
+    .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 10px;
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    /* Values section */
+    .values-section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+      margin: 0 0 20px;
+      background: linear-gradient(135deg, var(--text), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .value-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .value-card h4 {
+      font-size: 20px;
+      margin: 0 0 12px;
+      color: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .value-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* How it works section */
+    .how-it-works {
+      padding: 60px 0 80px;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      padding: 35px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -15px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .step-card h4 {
+      font-size: 22px;
+      margin: 30px 0 15px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .step-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* CTA section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.15) 0%, 
+        rgba(139, 92, 246, 0.12) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 60px 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-box h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin: 0 0 20px;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-box p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin: 0 0 35px;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .about-hero__title {
+        font-size: 40px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .cta-box {
+        padding: 40px 25px;
+      }
+
+      .cta-box h2 {
+        font-size: 32px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .cta-buttons .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">
+          <a href="index.html" class="logo">
+            <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img"/>
+          </a>
+        </div>
+        <span class="brand__text">HelpHub</span>
+      </div>
+
+      <nav class="nav">
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="#">Jobs</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="#">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <button class="btn btn--outline">Log in</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <h1 class="about-hero__title">Despre HelpHub</h1>
+        <p class="about-hero__subtitle">
+          Construim punți între inimile generoase și comunitățile care au nevoie de ajutor. 
+          Platforma noastră conectează voluntari pasionați cu organizații care schimbă lumea, 
+          o acțiune de voluntariat odată.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <div class="container">
+        <h2 class="section-title">Misiunea Noastră</h2>
+        <p class="section-subtitle">
+          Credem că fiecare persoană are potențialul de a face diferența în comunitatea sa
+        </p>
+
+        <div class="mission-grid">
+          <div class="mission-card">
+            <div class="mission-icon">🤝</div>
+            <h3>Conectare</h3>
+            <p>
+              Unim studenți, profesioniști și organizații non-profit într-o rețea puternică 
+              de schimbare socială și dezvoltare comunitară.
+            </p>
+          </div>
+
+          <div class="mission-card">
+            <div class="mission-icon">💡</div>
+            <h3>Inovație</h3>
+            <p>
+              Folosim tehnologia pentru a simplifica procesul de voluntariat și a face 
+              implicarea socială accesibilă tuturor.
+            </p>
+          </div>
+
+          <div class="mission-card">
+            <div class="mission-icon">🌍</div>
+            <h3>Impact</h3>
+            <p>
+              Măsurăm și amplificăm impactul fiecărei ore de voluntariat pentru a crea 
+              schimbări durabile în comunitățile noastre.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <h2 class="section-title">Impactul Nostru</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">5,000+</span>
+            <span class="stat-label">Voluntari Activi</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">250+</span>
+            <span class="stat-label">Organizații Partenere</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15,000+</span>
+            <span class="stat-label">Ore de Voluntariat</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Proiecte Finalizate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <h2 class="section-title">Valorile Noastre</h2>
+        <p class="section-subtitle">
+          Principiile care ne ghidează în tot ceea ce facem
+        </p>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <h4>🎯 Transparență</h4>
+            <p>
+              Oferim informații clare despre fiecare oportunitate și organizație, 
+              pentru ca voluntarii să ia decizii informate.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h4>🔒 Siguranță</h4>
+            <p>
+              Verificăm toate organizațiile partenere și protejăm datele 
+              personale ale utilizatorilor noștri.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h4>🌈 Incluziune</h4>
+            <p>
+              Creăm oportunități pentru toți, indiferent de vârstă, 
+              experiență sau background.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h4>📈 Creștere</h4>
+            <p>
+              Susținem dezvoltarea personală și profesională a voluntarilor 
+              prin experiențe valoroase.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h4>🤲 Comunitate</h4>
+            <p>
+              Construim o comunitate vibrantă de oameni dedicați 
+              schimbării sociale pozitive.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h4>⚡ Eficiență</h4>
+            <p>
+              Optimizăm procesele pentru ca voluntarii să petreacă mai mult timp 
+              ajutând și mai puțin timp căutând.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">Cum Funcționează</h2>
+        <p class="section-subtitle">
+          Doar 3 pași simpli te despart de următoarea ta aventură de voluntariat
+        </p>
+
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4>Creează-ți Contul</h4>
+            <p>
+              Înregistrează-te gratuit și creează un profil personalizat. Spune-ne despre 
+              abilitățile tale, interesele și disponibilitatea ta.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4>Găsește Oportunități</h4>
+            <p>
+              Explorează sute de oportunități de voluntariat filtrate după locație, 
+              domeniu de interes și program. Aplică cu un singur click!
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4>Fă Diferența</h4>
+            <p>
+              Participă la proiecte care te pasionează, conectează-te cu oameni 
+              minunați și urmărește impactul tău în comunitate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Gata să Începi?</h2>
+          <p>
+            Alătură-te comunității noastre de voluntari și începe să creezi schimbarea 
+            pe care vrei să o vezi în lume. Prima ta oportunitate te așteaptă!
+          </p>
+          <div class="cta-buttons">
+            <button class="btn btn--primary">Înregistrează-te Acum</button>
+            <button class="btn btn--ghost">Explorează Oportunități</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Volunteer Match - HelpHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

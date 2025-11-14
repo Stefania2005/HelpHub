@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Volunteer Opportunities — HelpHub</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <style>
+    /* Jobs specific styles */
+    .jobs-hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .jobs-hero__title {
+      font-size: 56px;
+      font-weight: 800;
+      margin: 0 0 20px;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .jobs-hero__subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* Filters section */
+    .filters-section {
+      padding: 40px 0;
+      background: rgba(59, 130, 246, 0.05);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .filters-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .filter-btn:hover {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Jobs section */
+    .jobs-section {
+      padding: 60px 0 80px;
+    }
+
+    .jobs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .jobs-count {
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    .jobs-count strong {
+      color: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .sort-select {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sort-select:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Job cards grid */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+    }
+
+    .job-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .job-card:hover::before {
+      left: 100%;
+    }
+
+    .job-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .job-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .job-card__badge {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .job-card__title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .job-card:hover .job-card__title {
+      color: var(--primary-light);
+    }
+
+    .job-card__org {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .job-card__org::before {
+      content: '🏢';
+      font-size: 16px;
+    }
+
+    .job-card__location {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .job-card__location::before {
+      content: '📍';
+      font-size: 14px;
+    }
+
+    .job-card__description {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0 0 20px;
+      font-size: 14px;
+    }
+
+    .job-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .job-tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--primary-light);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .job-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .job-card__date {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .btn--view {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn--view:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+    }
+
+    /* Load more section */
+    .load-more-section {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .btn--load-more {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .btn--load-more:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .jobs-hero__title {
+        font-size: 40px;
+      }
+
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filters-container {
+        justify-content: flex-start;
+      }
+
+      .jobs-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .jobs-hero__title {
+        font-size: 32px;
+      }
+
+      .job-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">
+          <a href="index.html" class="logo">
+            <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img"/>
+          </a>
+        </div>
+        <span class="brand__text">HelpHub</span>
+      </div>
+
+      <nav class="nav">
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="jobs.html">Jobs</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="#">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <button class="btn btn--outline">Log in</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="jobs-hero">
+      <div class="container">
+        <h1 class="jobs-hero__title">Oportunități de Voluntariat</h1>
+        <p class="jobs-hero__subtitle">
+          Descoperă proiecte care te inspiră și face diferența în comunitatea ta
+        </p>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="container">
+        <div class="search-box">
+          <input type="search" class="search-box__input" placeholder="Caută oportunități de voluntariat..." />
+          <button class="btn btn--search">Caută</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <div class="container">
+        <div class="filters-container">
+          <button class="filter-btn active">Toate</button>
+          <button class="filter-btn">Educație</button>
+          <button class="filter-btn">Mediu</button>
+          <button class="filter-btn">Sănătate</button>
+          <button class="filter-btn">Comunitate</button>
+          <button class="filter-btn">Animale</button>
+          <button class="filter-btn">Sport</button>
+          <button class="filter-btn">Cultură</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+      <div class="container">
+        <div class="jobs-header">
+          <div class="jobs-count">
+            Am găsit <strong>24 oportunități</strong> pentru tine
+          </div>
+          <select class="sort-select">
+            <option>Sortează: Cele mai recente</option>
+            <option>Sortează: Cele mai populare</option>
+            <option>Sortează: Urgente</option>
+          </select>
+        </div>
+
+        <div class="jobs-grid">
+          <!-- Job Card 1 -->
+          <article class="job-card">
+            <div class="job-card__header">
+              <div class="job-card__badge">Nou</div>
+            </div>
+            <h3 class="job-card__title">Voluntar Profesor de Română</h3>
+            <p class="job-card__org">Asociația Copii Deștepți</p>
+            <p class="job-card__location">București, Sector 3</p>
+            <p class="job-card__description">
+              Căutăm voluntari care să ajute copiii din medii defavorizate să învețe limba română. 
+              Experiență în predare este un plus, dar nu obligatoriu.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Educație</span>
+              <span class="job-tag">Weekend</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 2 zile în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 2 -->
+          <article class="job-card">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Campanie de Curățare a Parcului</h3>
+            <p class="job-card__org">Green Earth Romania</p>
+            <p class="job-card__location">București, Parcul Herăstrău</p>
+            <p class="job-card__description">
+              Hai să curățăm împreună parcul! Event de o zi pentru a îmbunătăți spațiile verzi 
+              din oraș. Materiale furnizate de organizație.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Mediu</span>
+              <span class="job-tag">O singură zi</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: ieri</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 3 -->
+          <article class="job-card">
+            <h3 class="job-card__title">Animator la Evenimente pentru Copii</h3>
+            <p class="job-card__org">Fundația Zâmbet de Copil</p>
+            <p class="job-card__location">București, Diverse locații</p>
+            <p class="job-card__description">
+              Caută voluntari energici pentru a anima evenimente și petreceri pentru copii 
+              din centre de plasament. Creativitate și bună dispoziție sunt esențiale!
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Copii</span>
+              <span class="job-tag">Flexibil</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 3 zile în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 4 -->
+          <article class="job-card">
+            <div class="job-card__header">
+              <div class="job-card__badge">Nou</div>
+            </div>
+            <h3 class="job-card__title">Voluntar IT pentru Seniori</h3>
+            <p class="job-card__org">Digital Seniors</p>
+            <p class="job-card__location">Online / București</p>
+            <p class="job-card__description">
+              Ajută seniorii să folosească tehnologia modernă. Predă cursuri de bază despre 
+              smartphone-uri, computere și rețele sociale.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Tehnologie</span>
+              <span class="job-tag">Remote</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: astăzi</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 5 -->
+          <article class="job-card">
+            <h3 class="job-card__title">Îngrijitor Adăpost de Animale</h3>
+            <p class="job-card__org">Prietenii Animalelor</p>
+            <p class="job-card__location">București, Afumați</p>
+            <p class="job-card__description">
+              Avem nevoie de voluntari pentru a ajuta la îngrijirea câinilor și pisicilor din 
+              adăpost. Include hrănire, plimbări și socializare.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Animale</span>
+              <span class="job-tag">Weekend</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 4 zile în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 6 -->
+          <article class="job-card">
+            <h3 class="job-card__title">Distribuție Alimente pentru Nevoiași</h3>
+            <p class="job-card__org">Banca de Alimente București</p>
+            <p class="job-card__location">București, Sector 2</p>
+            <p class="job-card__description">
+              Ajută la sortarea și distribuirea alimentelor către familiile care au nevoie. 
+              Program flexibil, minim 4 ore pe săptămână.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Comunitate</span>
+              <span class="job-tag">Săptămânal</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 5 zile în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 7 -->
+          <article class="job-card">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Asistent Medical Voluntar</h3>
+            <p class="job-card__org">Crucea Roșie Română</p>
+            <p class="job-card__location">București, Diverse spitale</p>
+            <p class="job-card__description">
+              Căutăm studenți la medicină sau asistente pentru a ajuta la campaniile 
+              de screening medical gratuit în comunități defavorizate.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Sănătate</span>
+              <span class="job-tag">Certificare</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 1 zi în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 8 -->
+          <article class="job-card">
+            <h3 class="job-card__title">Organizator Evenimente Culturale</h3>
+            <p class="job-card__org">Cultura pentru Toți</p>
+            <p class="job-card__location">București, Centru Vechi</p>
+            <p class="job-card__description">
+              Ajută la organizarea festivalurilor și evenimentelor culturale pentru a promova 
+              arta și cultura în comunitatea locală.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Cultură</span>
+              <span class="job-tag">Evenimente</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 6 zile în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+
+          <!-- Job Card 9 -->
+          <article class="job-card">
+            <h3 class="job-card__title">Antrenor Sport pentru Copii</h3>
+            <p class="job-card__org">Sport pentru Viitor</p>
+            <p class="job-card__location">București, Sector 4</p>
+            <p class="job-card__description">
+              Predă fotbal, baschet sau alte sporturi copiilor din cartierele defavorizate. 
+              Experiență sportivă necesară.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Sport</span>
+              <span class="job-tag">Copii</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Postat: 1 săptămână în urmă</span>
+              <button class="btn--view">Vizualizează</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Load More Section -->
+        <div class="load-more-section">
+          <button class="btn--load-more">Încarcă mai multe oportunități</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Volunteer Match - HelpHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — HelpHub</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Contact specific styles */
+        .contact-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .contact-hero__title {
+            font-size: 56px;
+            font-weight: 800;
+            margin: 0 0 20px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .contact-hero__subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* Contact main section */
+        .contact-main {
+            padding: 60px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Contact info cards */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .info-card__icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .info-card__title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 12px;
+            color: var(--text);
+        }
+
+        .info-card__text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 8px;
+        }
+
+        .info-card__link {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-card__link:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px;
+            color: var(--text);
+        }
+
+        .form-subtitle {
+            color: var(--text-muted);
+            margin: 0 0 30px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-label .required {
+            color: #ef4444;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .btn--submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn--submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 0;
+            background: rgba(59, 130, 246, 0.05);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 20px;
+            background: linear-gradient(135deg, var(--text), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .faq-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .faq-card__question {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin: 0 0 12px;
+        }
+
+        .faq-card__answer {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* Social media section */
+        .social-section {
+            padding: 60px 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 16px 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .social-icon {
+            font-size: 24px;
+        }
+
+        /* Partnership CTA */
+        .partnership-section {
+            padding: 80px 0;
+        }
+
+        .partnership-box {
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, 0.15) 0%,
+                    rgba(139, 92, 246, 0.12) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .partnership-box h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0 0 15px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .partnership-box p {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin: 0 0 30px;
+            line-height: 1.7;
+        }
+
+        .partnership-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 14px 28px;
+            border-radius: 12px;
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .partnership-email:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero__title {
+                font-size: 40px;
+            }
+
+            .contact-form {
+                padding: 30px 25px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partnership-box {
+                padding: 40px 25px;
+            }
+
+            .partnership-box h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .contact-hero__title {
+                font-size: 32px;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .social-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand__logo" aria-hidden="true">
+                    <a href="index.html" class="logo">
+                        <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img" />
+                    </a>
+                </div>
+                <span class="brand__text">HelpHub</span>
+            </div>
+
+            <nav class="nav">
+                <a class="nav__link" href="index.html">Home</a>
+                <a class="nav__link" href="jobs.html">Jobs</a>
+                <a class="nav__link" href="about.html">About</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+            </nav>
+
+            <div class="header-cta">
+                <button class="btn btn--outline">Log in</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1 class="contact-hero__title">Contactează-ne</h1>
+                <p class="contact-hero__subtitle">
+                    Suntem aici să te ajutăm! Trimite-ne un mesaj și îți vom răspunde în cel mai scurt timp posibil.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Main Section -->
+        <section class="contact-main">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Info -->
+                    <div class="info-card">
+                        <span class="info-card__icon">📧</span>
+                        <h3 class="info-card__title">Email</h3>
+                        <p class="info-card__text">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mariacristina.hategan@ulbsibiu.ro"
+                                target="_blank" class="info-card__link">mariacristina.hategan@ulbsibiu.ro</a>
+                        </p>
+                        <p class="info-card__text">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=stefanianadia.stoian@ulbsibiu.ro" target="_blank"
+                                class="info-card__link">stefanianadia.stoian@ulbsibiu.ro</a>
+                        </p>
+                         <p class="info-card__text">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andreeai.avram@ulbsibiu.ro" target="_blank"
+                                class="info-card__link">andreeai.avram@ulbsibiu.ro</a>
+                        </p>
+                         <p class="info-card__text">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marialuiza.cojanu@ulbsibiu.ro" target="_blank"
+                                class="info-card__link">marialuiza.cojanu@ulbsibiu.ro</a>
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-card__icon">📞</span>
+                        <h3 class="info-card__title">Telefon</h3>
+                        <p class="info-card__text">
+                            <a href="tel:+40721123456" class="info-card__link">+40 721 123 456</a>
+                        </p>
+                        <p class="info-card__text" style="font-size: 14px; margin-top: 8px;">
+                            Luni - Vineri: 09:00 - 17:00
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-card__icon">📍</span>
+                        <h3 class="info-card__title">Adresă</h3>
+                        <p class="info-card__text">
+                            Str. Voluntarilor, Nr. 25<br>
+                            Sector 1, București<br>
+                            România, 010101
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-card__icon">🕒</span>
+                        <h3 class="info-card__title">Program</h3>
+                        <p class="info-card__text">
+                            <strong>Luni - Vineri:</strong> 09:00 - 17:00<br>
+                            <strong>Sâmbătă:</strong> 10:00 - 14:00<br>
+                            <strong>Duminică:</strong> Închis
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2 class="form-title">Trimite-ne un Mesaj</h2>
+                    <p class="form-subtitle">Completează formularul și îți vom răspunde în maxim 24 de ore</p>
+
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Nume complet <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" placeholder="Ion Popescu" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Email <span class="required">*</span>
+                            </label>
+                            <input type="email" class="form-input" placeholder="ion.popescu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Telefon (opțional)</label>
+                            <input type="tel" class="form-input" placeholder="+40 721 123 456">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Tip solicitare <span class="required">*</span>
+                            </label>
+                            <select class="form-select" required>
+                                <option value="">Selectează o opțiune</option>
+                                <option value="volunteer">Sunt voluntar</option>
+                                <option value="organization">Reprezint o organizație</option>
+                                <option value="general">Întrebare generală</option>
+                                <option value="support">Suport tehnic</option>
+                                <option value="partnership">Parteneriat</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Mesaj <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" placeholder="Scrie mesajul tău aici..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn--submit">Trimite Mesaj</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Întrebări Frecvente</h2>
+                <p class="section-subtitle">
+                    Răspunsuri rapide la cele mai comune întrebări
+                </p>
+
+                <div class="faq-grid">
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Cum mă înregistrez ca voluntar?</h3>
+                        <p class="faq-card__answer">
+                            Dă click pe butonul "Sign Up" din header, completează formularul cu informațiile tale
+                            și vei putea aplica imediat la oportunități.
+                        </p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Cum adaug o oportunitate de voluntariat?</h3>
+                        <p class="faq-card__answer">
+                            Organizațiile verificate pot adăuga oportunități din panoul lor de administrare.
+                            Contactează-ne pentru a deveni organizație parteneră.
+                        </p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Este platforma gratuită?</h3>
+                        <p class="faq-card__answer">
+                            Da! HelpHub este complet gratuit atât pentru voluntari, cât și pentru organizațiile
+                            non-profit verificate.
+                        </p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Cum mă verific ca organizație?</h3>
+                        <p class="faq-card__answer">
+                            Trimite-ne un email la partnerships@helphub.ro cu documentele organizației tale
+                            (statut, CIF, acte doveditoare). Verificăm în 2-3 zile lucrătoare.
+                        </p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Pot anula o aplicație?</h3>
+                        <p class="faq-card__answer">
+                            Da, poți anula oricând din profilul tău la secțiunea "Aplicațiile mele".
+                            Te rugăm să anunți și organizația dacă este necesar.
+                        </p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3 class="faq-card__question">Primesc certificat de voluntariat?</h3>
+                        <p class="faq-card__answer">
+                            Certificatul este emis de organizația la care ai făcut voluntariat, nu de HelpHub.
+                            Platforma noastră doar facilitează conexiunea.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section class="social-section">
+            <div class="container">
+                <h2 class="section-title">Conectează-te cu Noi</h2>
+                <p class="section-subtitle">
+                    Urmărește-ne pe rețelele sociale pentru noutăți și povești inspiraționale
+                </p>
+
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <span class="social-icon">📘</span>
+                        Facebook
+                    </a>
+                    <a href="#" class="social-link">
+                        <span class="social-icon">📸</span>
+                        Instagram
+                    </a>
+                    <a href="#" class="social-link">
+                        <span class="social-icon">💼</span>
+                        LinkedIn
+                    </a>
+                    <a href="#" class="social-link">
+                        <span class="social-icon">🐦</span>
+                        Twitter
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership CTA -->
+        <section class="partnership-section">
+            <div class="container">
+                <div class="partnership-box">
+                    <h2>Organizație Non-Profit?</h2>
+                    <p>
+                        Devino partenerul nostru și conectează-te cu mii de voluntari dedicați.
+                        Verificăm organizațiile pentru siguranța comunității noastre.
+                    </p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=partnerships@helphub.ro" target="_blank"
+                        class="partnership-email">
+                        <span>📧</span>
+                        partnerships@helphub.ro
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> Volunteer Match - HelpHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Mulțumim pentru mesaj! Îți vom răspunde în curând.');
+        });
+    </script>
+</body>
+
+</html>
