@@ -566,7 +566,6 @@ header .logo-img:hover {
   font-size:14px;
 }
 
-/* Responsive */
 @media (max-width: 900px){
   .hero__highlight{
     flex-direction:column;
@@ -582,7 +581,6 @@ header .logo-img:hover {
   .hero__title--bold{font-size:48px}
   .illustration{max-width:100%}
 }
-
 @media (max-width: 520px){
   .hero__title{font-size:32px}
   .hero__title--bold{font-size:40px}
