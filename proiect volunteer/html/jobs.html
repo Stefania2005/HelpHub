@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ro">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -140,6 +140,10 @@
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
+    }
+
+    .job-card.hidden {
+      display: none;
     }
 
     .job-card::before {
@@ -303,6 +307,237 @@
       box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
     }
 
+    .btn--load-more.hidden {
+      display: none;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal__content {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--text);
+      font-size: 28px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .modal__close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .modal__badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .modal__title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 20px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .modal__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .modal__meta-item strong {
+      color: var(--primary-light);
+    }
+
+    .modal__section {
+      margin-bottom: 30px;
+    }
+
+    .modal__section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 15px;
+    }
+
+    .modal__text {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .modal__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .modal__list li {
+      color: var(--text-muted);
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .modal__list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-light);
+      font-weight: bold;
+    }
+
+    .modal__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .modal__tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--primary-light);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .modal__actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn--apply {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn--apply:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+    }
+
+    .btn--contact {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn--contact:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .modal__content {
+        padding: 30px 20px;
+      }
+
+      .modal__title {
+        font-size: 24px;
+      }
+
+      .modal__actions {
+        flex-direction: column;
+      }
+    }
+
     @media (max-width: 768px) {
       .jobs-hero__title {
         font-size: 40px;
@@ -340,17 +575,17 @@
       <div class="brand">
         <div class="brand__logo" aria-hidden="true">
           <a href="index.html" class="logo">
-            <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img"/>
+            <img src="logo.jpg" alt="Volunteer Logo" class="logo-img"/>
           </a>
         </div>
         <span class="brand__text">HelpHub</span>
       </div>
 
       <nav class="nav">
-        <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="jobs.html">Voluntariate</a>
-        <a class="nav__link" href="about.html">About</a>
-        <a class="nav__link" href="#">Contact</a>
+        <a class="nav__link " href="index.html">Home</a>
+        <a class="nav__link active" href="jobs.html">Jobs</a>
+        <a class="nav__link " href="about.html">About</a>
+        <a class="nav__link " href="contact.html">Contact</a>
       </nav>
 
       <div class="header-cta">
@@ -363,9 +598,9 @@
     <!-- Hero Section -->
     <section class="jobs-hero">
       <div class="container">
-        <h1 class="jobs-hero__title">Oportunități de Voluntariat</h1>
+        <h1 class="jobs-hero__title">Volunteer Opportunities</h1>
         <p class="jobs-hero__subtitle">
-          Descoperă proiecte care te inspiră și face diferența în comunitatea ta
+          Discover projects that inspire you and make a difference in your community
         </p>
       </div>
     </section>
@@ -374,8 +609,8 @@
     <section class="search-section">
       <div class="container">
         <div class="search-box">
-          <input type="search" class="search-box__input" placeholder="Caută oportunități de voluntariat..." />
-          <button class="btn btn--search">Caută</button>
+          <input type="search" class="search-box__input" placeholder="Search for volunteer opportunities..." />
+          <button class="btn btn--search">Search</button>
         </div>
       </div>
     </section>
@@ -384,14 +619,14 @@
     <section class="filters-section">
       <div class="container">
         <div class="filters-container">
-          <button class="filter-btn active">Toate</button>
-          <button class="filter-btn">Educație</button>
-          <button class="filter-btn">Mediu</button>
-          <button class="filter-btn">Sănătate</button>
-          <button class="filter-btn">Comunitate</button>
-          <button class="filter-btn">Animale</button>
-          <button class="filter-btn">Sport</button>
-          <button class="filter-btn">Cultură</button>
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Education</button>
+          <button class="filter-btn">Environment</button>
+          <button class="filter-btn">Health</button>
+          <button class="filter-btn">Community</button>
+          <button class="filter-btn">Animals</button>
+          <button class="filter-btn">Sports</button>
+          <button class="filter-btn">Culture</button>
         </div>
       </div>
     </section>
@@ -401,35 +636,35 @@
       <div class="container">
         <div class="jobs-header">
           <div class="jobs-count">
-            Am găsit <strong>24 oportunități</strong> pentru tine
+            We found <strong><span id="total-count">18</span> opportunities</strong> for you
           </div>
           <select class="sort-select">
-            <option>Sortează: Cele mai recente</option>
-            <option>Sortează: Cele mai populare</option>
-            <option>Sortează: Urgente</option>
+            <option>Sort by: Most Recent</option>
+            <option>Sort by: Most Popular</option>
+            <option>Sort by: Urgent</option>
           </select>
         </div>
 
-        <div class="jobs-grid">
+        <div class="jobs-grid" id="jobs-grid">
           <!-- Job Card 1 -->
           <article class="job-card">
             <div class="job-card__header">
-              <div class="job-card__badge">Nou</div>
+              <div class="job-card__badge">New</div>
             </div>
-            <h3 class="job-card__title">Voluntar Profesor de Română</h3>
-            <p class="job-card__org">Asociația Copii Deștepți</p>
-            <p class="job-card__location">București, Sector 3</p>
+            <h3 class="job-card__title">Education Gap Tutor - Combat Inequality</h3>
+            <p class="job-card__org">Equal Access Education Coalition</p>
+            <p class="job-card__location">Downtown, District 3</p>
             <p class="job-card__description">
-              Căutăm voluntari care să ajute copiii din medii defavorizate să învețe limba română. 
-              Experiență în predare este un plus, dar nu obligatoriu.
+              Address educational inequality by tutoring underprivileged children who lack access to quality education. 
+              Help bridge the achievement gap in our community.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Educație</span>
+              <span class="job-tag">Education Inequality</span>
               <span class="job-tag">Weekend</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 2 zile în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 2 days ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
@@ -438,99 +673,99 @@
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
-            <h3 class="job-card__title">Campanie de Curățare a Parcului</h3>
-            <p class="job-card__org">Green Earth Romania</p>
-            <p class="job-card__location">București, Parcul Herăstrău</p>
+            <h3 class="job-card__title">Urban Pollution Reduction Campaign</h3>
+            <p class="job-card__org">Clean City Initiative</p>
+            <p class="job-card__location">Central Park</p>
             <p class="job-card__description">
-              Hai să curățăm împreună parcul! Event de o zi pentru a îmbunătăți spațiile verzi 
-              din oraș. Materiale furnizate de organizație.
+              Fight environmental pollution in our city! Help clean littered areas and raise awareness 
+              about waste management crisis affecting our neighborhoods.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Mediu</span>
-              <span class="job-tag">O singură zi</span>
+              <span class="job-tag">Pollution Crisis</span>
+              <span class="job-tag">One Day</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: ieri</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: yesterday</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 3 -->
           <article class="job-card">
-            <h3 class="job-card__title">Animator la Evenimente pentru Copii</h3>
-            <p class="job-card__org">Fundația Zâmbet de Copil</p>
-            <p class="job-card__location">București, Diverse locații</p>
+            <h3 class="job-card__title">Foster Care Support Advocate</h3>
+            <p class="job-card__org">Children's Rights Foundation</p>
+            <p class="job-card__location">Various Locations</p>
             <p class="job-card__description">
-              Caută voluntari energici pentru a anima evenimente și petreceri pentru copii 
-              din centre de plasament. Creativitate și bună dispoziție sunt esențiale!
+              Support children in the overburdened foster care system. Address the crisis of children 
+              lacking stable homes by providing mentorship and emotional support.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Copii</span>
-              <span class="job-tag">Flexibil</span>
+              <span class="job-tag">Child Welfare Crisis</span>
+              <span class="job-tag">Flexible</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 3 zile în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 3 days ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 4 -->
           <article class="job-card">
             <div class="job-card__header">
-              <div class="job-card__badge">Nou</div>
+              <div class="job-card__badge">New</div>
             </div>
-            <h3 class="job-card__title">Voluntar IT pentru Seniori</h3>
-            <p class="job-card__org">Digital Seniors</p>
-            <p class="job-card__location">Online / București</p>
+            <h3 class="job-card__title">Digital Divide Bridge Builder</h3>
+            <p class="job-card__org">Tech Equity Alliance</p>
+            <p class="job-card__location">Online / In-Person</p>
             <p class="job-card__description">
-              Ajută seniorii să folosească tehnologia modernă. Predă cursuri de bază despre 
-              smartphone-uri, computere și rețele sociale.
+              Combat the digital divide affecting seniors and low-income families. Teach technology skills 
+              to those excluded from the digital economy.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Tehnologie</span>
+              <span class="job-tag">Digital Inequality</span>
               <span class="job-tag">Remote</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: astăzi</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: today</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 5 -->
           <article class="job-card">
-            <h3 class="job-card__title">Îngrijitor Adăpost de Animale</h3>
-            <p class="job-card__org">Prietenii Animalelor</p>
-            <p class="job-card__location">București, Afumați</p>
+            <h3 class="job-card__title">Animal Overpopulation Crisis Volunteer</h3>
+            <p class="job-card__org">Shelter Overcrowding Task Force</p>
+            <p class="job-card__location">City Shelter</p>
             <p class="job-card__description">
-              Avem nevoie de voluntari pentru a ajuta la îngrijirea câinilor și pisicilor din 
-              adăpost. Include hrănire, plimbări și socializare.
+              Address the animal shelter overcrowding crisis. Help care for abandoned animals and 
+              promote spay/neuter programs to prevent euthanasia.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Animale</span>
+              <span class="job-tag">Animal Welfare Crisis</span>
               <span class="job-tag">Weekend</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 4 zile în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 4 days ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 6 -->
           <article class="job-card">
-            <h3 class="job-card__title">Distribuție Alimente pentru Nevoiași</h3>
-            <p class="job-card__org">Banca de Alimente București</p>
-            <p class="job-card__location">București, Sector 2</p>
+            <h3 class="job-card__title">Food Insecurity Response Team</h3>
+            <p class="job-card__org">End Hunger Coalition</p>
+            <p class="job-card__location">District 2</p>
             <p class="job-card__description">
-              Ajută la sortarea și distribuirea alimentelor către familiile care au nevoie. 
-              Program flexibil, minim 4 ore pe săptămână.
+              Combat rising food insecurity in our community. Help distribute food to families 
+              struggling with poverty and limited access to nutritious meals.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Comunitate</span>
-              <span class="job-tag">Săptămânal</span>
+              <span class="job-tag">Food Insecurity</span>
+              <span class="job-tag">Weekly</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 5 zile în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 5 days ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
@@ -539,69 +774,263 @@
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
-            <h3 class="job-card__title">Asistent Medical Voluntar</h3>
-            <p class="job-card__org">Crucea Roșie Română</p>
-            <p class="job-card__location">București, Diverse spitale</p>
+            <h3 class="job-card__title">Healthcare Access Advocate</h3>
+            <p class="job-card__org">Medical Equity Network</p>
+            <p class="job-card__location">Various Hospitals</p>
             <p class="job-card__description">
-              Căutăm studenți la medicină sau asistente pentru a ajuta la campaniile 
-              de screening medical gratuit în comunități defavorizate.
+              Address healthcare inequality by assisting with free medical screenings in underserved areas 
+              where residents lack access to basic healthcare.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Sănătate</span>
-              <span class="job-tag">Certificare</span>
+              <span class="job-tag">Healthcare Gap</span>
+              <span class="job-tag">Certification</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 1 zi în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 1 day ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 8 -->
           <article class="job-card">
-            <h3 class="job-card__title">Organizator Evenimente Culturale</h3>
-            <p class="job-card__org">Cultura pentru Toți</p>
-            <p class="job-card__location">București, Centru Vechi</p>
+            <h3 class="job-card__title">Cultural Preservation Activist</h3>
+            <p class="job-card__org">Heritage Under Threat Alliance</p>
+            <p class="job-card__location">Old Town</p>
             <p class="job-card__description">
-              Ajută la organizarea festivalurilor și evenimentelor culturale pentru a promova 
-              arta și cultura în comunitatea locală.
+              Fight the loss of local culture and heritage due to gentrification. Organize events 
+              to preserve and promote endangered cultural traditions.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Cultură</span>
-              <span class="job-tag">Evenimente</span>
+              <span class="job-tag">Cultural Erosion</span>
+              <span class="job-tag">Events</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 6 zile în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 6 days ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
 
           <!-- Job Card 9 -->
           <article class="job-card">
-            <h3 class="job-card__title">Antrenor Sport pentru Copii</h3>
-            <p class="job-card__org">Sport pentru Viitor</p>
-            <p class="job-card__location">București, Sector 4</p>
+            <h3 class="job-card__title">Youth Opportunity Gap Coach</h3>
+            <p class="job-card__org">Fair Futures Initiative</p>
+            <p class="job-card__location">District 4</p>
             <p class="job-card__description">
-              Predă fotbal, baschet sau alte sporturi copiilor din cartierele defavorizate. 
-              Experiență sportivă necesară.
+              Combat youth unemployment and lack of recreational opportunities in disadvantaged areas. 
+              Teach sports while mentoring at-risk youth.
             </p>
             <div class="job-card__tags">
-              <span class="job-tag">Sport</span>
-              <span class="job-tag">Copii</span>
+              <span class="job-tag">Youth Opportunity Gap</span>
+              <span class="job-tag">Children</span>
             </div>
             <div class="job-card__footer">
-              <span class="job-card__date">Postat: 1 săptămână în urmă</span>
-              <button class="btn--view">Vizualizează</button>
+              <span class="job-card__date">Posted: 1 week ago</span>
+              <button class="btn--view">View Details</button>
             </div>
           </article>
+
+          <!-- HIDDEN CARDS - Will show when "Load More" is clicked -->
+          
+          <!-- Job Card 10 -->
+          <article class="job-card hidden">
+            <div class="job-card__header">
+              <div class="job-card__badge">New</div>
+            </div>
+            <h3 class="job-card__title">Homelessness Crisis Outreach Worker</h3>
+            <p class="job-card__org">Housing First Coalition</p>
+            <p class="job-card__location">Downtown Area</p>
+            <p class="job-card__description">
+              Address the growing homelessness crisis. Provide essential services, distribute supplies, 
+              and connect unhoused individuals with shelter and resources.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Homelessness Crisis</span>
+              <span class="job-tag">Evening Shifts</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 2 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 11 -->
+          <article class="job-card hidden">
+            <h3 class="job-card__title">Food Desert Solutions Coordinator</h3>
+            <p class="job-card__org">Healthy Access Project</p>
+            <p class="job-card__location">Eastside Community Garden</p>
+            <p class="job-card__description">
+              Combat food deserts by maintaining community gardens in neighborhoods lacking 
+              access to fresh produce. Teach sustainable urban agriculture.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Food Desert Crisis</span>
+              <span class="job-tag">Weekends</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 3 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 12 -->
+          <article class="job-card hidden">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Climate Crisis Emergency Responder</h3>
+            <p class="job-card__org">Climate Action Response Team</p>
+            <p class="job-card__location">Various Locations</p>
+            <p class="job-card__description">
+              Respond to climate-related disasters affecting vulnerable communities. Help with 
+              flood relief, extreme heat support, and climate resilience programs.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Climate Emergency</span>
+              <span class="job-tag">On-Call</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: today</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 13 -->
+          <article class="job-card hidden">
+            <h3 class="job-card__title">Immigration Rights Support Advocate</h3>
+            <p class="job-card__org">Immigrant Justice Network</p>
+            <p class="job-card__location">Community Center</p>
+            <p class="job-card__description">
+              Address barriers facing immigrant families. Provide language assistance, legal guidance, 
+              and help navigate systems denying access to basic services.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Immigration Barriers</span>
+              <span class="job-tag">Language Skills</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 4 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 14 -->
+          <article class="job-card hidden">
+            <h3 class="job-card__title">At-Risk Youth Prevention Mentor</h3>
+            <p class="job-card__org">Break the Cycle Initiative</p>
+            <p class="job-card__location">Local Schools</p>
+            <p class="job-card__description">
+              Combat youth incarceration and gang violence. Mentor young people at risk of 
+              entering the criminal justice system, providing positive alternatives.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Youth Justice</span>
+              <span class="job-tag">Mentorship</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 5 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 15 -->
+          <article class="job-card hidden">
+            <div class="job-card__header">
+              <div class="job-card__badge">New</div>
+            </div>
+            <h3 class="job-card__title">Water Contamination Awareness Educator</h3>
+            <p class="job-card__org">Clean Water Rights Alliance</p>
+            <p class="job-card__location">Schools & Community Centers</p>
+            <p class="job-card__description">
+              Address water quality issues affecting low-income neighborhoods. Educate residents about 
+              contamination risks and advocate for infrastructure improvements.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Water Crisis</span>
+              <span class="job-tag">Education</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 1 week ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 16 -->
+          <article class="job-card hidden">
+            <h3 class="job-card__title">Eviction Prevention Legal Aid</h3>
+            <p class="job-card__org">Housing Rights Defense</p>
+            <p class="job-card__location">Downtown Legal Center</p>
+            <p class="job-card__description">
+              Fight the housing affordability crisis. Assist low-income tenants facing wrongful eviction 
+              and help families stay in their homes during economic hardship.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Housing Crisis</span>
+              <span class="job-tag">Legal Aid</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 2 weeks ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 17 -->
+          <article class="job-card hidden">
+            <h3 class="job-card__title">Elder Abuse Prevention Companion</h3>
+            <p class="job-card__org">Senior Protection Services</p>
+            <p class="job-card__location">Senior Living Center</p>
+            <p class="job-card__description">
+              Combat elder abuse and isolation. Visit isolated seniors to provide companionship 
+              and watch for signs of neglect or exploitation.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Elder Abuse</span>
+              <span class="job-tag">Seniors</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 1 week ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 18 -->
+          <article class="job-card hidden">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Voter Suppression Prevention Organizer</h3>
+            <p class="job-card__org">Democracy Defense Coalition</p>
+            <p class="job-card__location">Multiple Campus Locations</p>
+            <p class="job-card__description">
+              Fight voter suppression and disenfranchisement. Register voters in marginalized communities 
+              and ensure equal access to the democratic process.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Voting Rights</span>
+              <span class="job-tag">Campaign</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 3 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
         </div>
 
         <!-- Load More Section -->
         <div class="load-more-section">
-          <button class="btn--load-more">Încarcă mai multe oportunități</button>
+          <button class="btn--load-more" id="loadMoreBtn">View More Opportunities</button>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Modal for Job Details -->
+  <div class="modal" id="jobModal">
+    <div class="modal__content">
+      <button class="modal__close" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -619,6 +1048,212 @@
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       });
+    });
+
+    // Load More functionality
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const hiddenCards = document.querySelectorAll('.job-card.hidden');
+    const totalCountSpan = document.getElementById('total-count');
+    
+    let currentlyShown = 9;
+    const totalCards = document.querySelectorAll('.job-card').length;
+
+    loadMoreBtn.addEventListener('click', () => {
+      hiddenCards.forEach(card => {
+        card.classList.remove('hidden');
+      });
+      
+      totalCountSpan.textContent = totalCards;
+      loadMoreBtn.classList.add('hidden');
+      
+      if (hiddenCards.length > 0) {
+        hiddenCards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('jobModal');
+    const modalBody = document.getElementById('modalBody');
+
+    // Job details data
+    const jobDetails = {
+      'Education Gap Tutor - Combat Inequality': {
+        badge: 'New',
+        org: 'Equal Access Education Coalition',
+        location: 'Downtown, District 3',
+        posted: '2 days ago',
+        description: 'Join our mission to address educational inequality by providing quality tutoring to underprivileged children who lack access to proper educational resources. Help bridge the achievement gap in our community.',
+        about: 'This program specifically targets students from low-income families who are falling behind due to lack of educational support at home. Many of these children attend overcrowded schools with limited resources and need one-on-one attention to succeed.',
+        responsibilities: [
+          'Provide one-on-one or small group tutoring sessions',
+          'Help students with homework and test preparation',
+          'Identify learning gaps and create personalized learning plans',
+          'Build confidence and foster a love of learning',
+          'Track student progress and communicate with program coordinators'
+        ],
+        requirements: [
+          'High school diploma or equivalent',
+          'Patience and strong communication skills',
+          'Commitment of at least 3 hours per week for one semester',
+          'Background check required',
+          'Teaching experience helpful but not required'
+        ],
+        impact: 'Students in this program show an average improvement of 2 grade levels in reading within one year. You will directly impact a child\'s future and help break the cycle of poverty through education.',
+        tags: ['Education Inequality', 'Weekend', 'Tutoring', 'Youth']
+      },
+      'Urban Pollution Reduction Campaign': {
+        badge: 'Urgent',
+        org: 'Clean City Initiative',
+        location: 'Central Park',
+        posted: 'yesterday',
+        description: 'Fight environmental pollution in our city! Help clean littered areas and raise awareness about the waste management crisis affecting our neighborhoods.',
+        about: 'Our city faces a severe pollution crisis with overflowing trash in public spaces, contaminated waterways, and poor air quality. This one-day intensive cleanup will make an immediate visible impact while raising awareness.',
+        responsibilities: [
+          'Participate in organized cleanup activities',
+          'Sort recyclables from general waste',
+          'Document pollution hotspots for city officials',
+          'Engage with community members about proper waste disposal',
+          'Help distribute educational materials about reducing waste'
+        ],
+        requirements: [
+          'Physical ability to walk and bend for several hours',
+          'Appropriate clothing for outdoor work',
+          'Willingness to work as part of a team',
+          'No prior experience necessary - training provided',
+          'Bring reusable water bottle'
+        ],
+        impact: 'Last year, our volunteers collected over 5 tons of trash and recyclables. Studies show that cleaned areas stay cleaner as communities take more pride in their environment.',
+        tags: ['Pollution Crisis', 'One Day', 'Environment', 'Outdoor']
+      }
+    };
+
+    // Default template for jobs without specific details
+    function getDefaultJobDetails(title, org, location, posted, description, tags) {
+      return {
+        badge: '',
+        org: org,
+        location: location,
+        posted: posted,
+        description: description,
+        about: 'This volunteer opportunity addresses a critical civic issue in our community. Your participation will directly contribute to positive social change.',
+        responsibilities: [
+          'Actively participate in program activities',
+          'Work collaboratively with staff and other volunteers',
+          'Maintain professional conduct and confidentiality',
+          'Complete required training sessions',
+          'Track and report volunteer hours'
+        ],
+        requirements: [
+          'Commitment to the mission and values of the organization',
+          'Reliable attendance and punctuality',
+          'Good communication and interpersonal skills',
+          'Background check may be required',
+          'Orientation attendance required'
+        ],
+        impact: 'Your volunteer work will make a measurable difference in addressing this civic challenge. Join hundreds of volunteers making our community better.',
+        tags: tags || ['Community', 'Flexible']
+      };
+    }
+
+    // Open modal with job details
+    function openModal(title, org, location, posted, description, tags) {
+      const details = jobDetails[title] || getDefaultJobDetails(title, org, location, posted, description, tags);
+      
+      modalBody.innerHTML = `
+        ${details.badge ? `<span class="modal__badge">${details.badge}</span>` : ''}
+        <h2 class="modal__title">${title}</h2>
+        
+        <div class="modal__meta">
+          <div class="modal__meta-item">
+            <span>🏢</span>
+            <span><strong>Organization:</strong> ${details.org}</span>
+          </div>
+          <div class="modal__meta-item">
+            <span>📍</span>
+            <span><strong>Location:</strong> ${details.location}</span>
+          </div>
+          <div class="modal__meta-item">
+            <span>📅</span>
+            <span><strong>Posted:</strong> ${details.posted}</span>
+          </div>
+        </div>
+
+        <div class="modal__section">
+          <h3 class="modal__section-title">Overview</h3>
+          <p class="modal__text">${details.description}</p>
+        </div>
+
+        <div class="modal__section">
+          <h3 class="modal__section-title">About This Opportunity</h3>
+          <p class="modal__text">${details.about}</p>
+        </div>
+
+        <div class="modal__section">
+          <h3 class="modal__section-title">Responsibilities</h3>
+          <ul class="modal__list">
+            ${details.responsibilities.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="modal__section">
+          <h3 class="modal__section-title">Requirements</h3>
+          <ul class="modal__list">
+            ${details.requirements.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="modal__section">
+          <h3 class="modal__section-title">Impact</h3>
+          <p class="modal__text">${details.impact}</p>
+        </div>
+
+        <div class="modal__tags">
+          ${details.tags.map(tag => `<span class="modal__tag">${tag}</span>`).join('')}
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn--apply">Apply Now</button>
+          <button class="btn--contact" onclick="window.location.href='contact.html'">Contact Organization</button>
+        </div>
+      `;
+      
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeModal();
+      }
+    });
+
+    // Add click listeners to all "View Details" buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn--view')) {
+        const card = e.target.closest('.job-card');
+        const title = card.querySelector('.job-card__title').textContent;
+        const org = card.querySelector('.job-card__org').textContent;
+        const location = card.querySelector('.job-card__location').textContent;
+        const posted = card.querySelector('.job-card__date').textContent.replace('Posted: ', '');
+        const description = card.querySelector('.job-card__description').textContent;
+        const tags = Array.from(card.querySelectorAll('.job-tag')).map(tag => tag.textContent);
+        
+        openModal(title, org, location, posted, description, tags);
+      }
     });
   </script>
 </body>

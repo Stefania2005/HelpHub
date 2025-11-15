@@ -12,20 +12,83 @@
   <link rel="stylesheet" href="../css/style.css">
   
   <style>
-    /* About specific styles */
+    /* ========== NEW HERO STYLES ========== */
     .about-hero {
-      padding: 80px 0 60px;
+      padding: 100px 0 80px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .about-hero__title {
-      font-size: 56px;
-      font-weight: 800;
-      margin: 0 0 20px;
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+      animation: rotate-slow 30s linear infinite;
+    }
+
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-content-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 10px 24px;
+      border-radius: 50px;
+      margin-bottom: 30px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .hero-badge span {
+      font-size: 14px;
+      font-weight: 600;
       background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .about-hero__title {
+      font-size: 64px;
+      font-weight: 800;
+      margin: 0 0 30px;
+      color: var(--text);
+      line-height: 1.2;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
       animation: shimmer 3s ease-in-out infinite;
     }
 
@@ -33,88 +96,146 @@
       font-size: 20px;
       color: var(--text-muted);
       max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
+      margin: 0 auto 50px;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
     }
 
-    /* Mission section */
-    .mission-section {
-      padding: 60px 0;
+    /* Mini Stats in Hero */
+    .hero-stats-mini {
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+      margin-top: 50px;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
     }
 
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .mission-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      padding: 40px 30px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    .mini-stat {
       text-align: center;
+    }
+
+    .mini-stat-number {
+      display: block;
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .mini-stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========== NEW MISSION SECTION STYLES ========== */
+    .mission-section {
+      padding: 80px 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .mission-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-light);
+      background: rgba(59, 130, 246, 0.1);
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .mission-grid-new {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+    }
+
+    .mission-card-large {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      padding: 50px 40px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
     }
 
-    .mission-card::before {
+    .card-highlight {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .mission-card-large:hover .card-highlight {
+      transform: scaleX(1);
+    }
+
+    .mission-card-large::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-      transition: left 0.7s ease;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
+      transition: left 0.6s ease;
     }
 
-    .mission-card:hover::before {
+    .mission-card-large:hover::before {
       left: 100%;
     }
 
-    .mission-card:hover {
-      background: rgba(255, 255, 255, 0.12);
+    .mission-card-large:hover {
+      background: rgba(255, 255, 255, 0.1);
       border-color: rgba(59, 130, 246, 0.4);
-      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
-      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 70px rgba(59, 130, 246, 0.4);
+      transform: translateY(-12px);
     }
 
-    .mission-icon {
-      font-size: 48px;
-      margin-bottom: 20px;
+    .card-icon-large {
+      font-size: 56px;
+      margin-bottom: 25px;
       display: inline-block;
-      animation: float-icon 3s ease-in-out infinite;
-    }
-
-    @keyframes float-icon {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .mission-card:hover .mission-icon {
-      transform: scale(1.2) rotate(5deg);
       transition: all 0.3s ease;
     }
 
-    .mission-card h3 {
-      font-size: 24px;
-      margin: 0 0 15px;
+    .mission-card-large:hover .card-icon-large {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    .mission-card-large h3 {
+      font-size: 26px;
+      margin: 0 0 18px;
       color: var(--text);
       font-weight: 700;
     }
 
-    .mission-card p {
+    .mission-card-large p {
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.8;
       margin: 0;
+      font-size: 16px;
     }
 
-    /* Stats section */
+    /* ========== STATS SECTION (ORIGINAL) ========== */
     .stats-section {
       padding: 60px 0;
       background: rgba(59, 130, 246, 0.05);
@@ -157,7 +278,7 @@
       font-weight: 500;
     }
 
-    /* Values section */
+    /* ========== VALUES SECTION (ORIGINAL) ========== */
     .values-section {
       padding: 60px 0;
     }
@@ -218,7 +339,7 @@
       font-size: 15px;
     }
 
-    /* How it works section */
+    /* ========== HOW IT WORKS (ORIGINAL) ========== */
     .how-it-works {
       padding: 60px 0 80px;
     }
@@ -278,7 +399,7 @@
       margin: 0;
     }
 
-    /* CTA section */
+    /* ========== CTA SECTION (ORIGINAL) ========== */
     .cta-section {
       padding: 80px 0;
       text-align: center;
@@ -321,9 +442,22 @@
       flex-wrap: wrap;
     }
 
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       .about-hero__title {
-        font-size: 40px;
+        font-size: 42px;
+      }
+
+      .hero-stats-mini {
+        gap: 30px;
+      }
+
+      .mini-stat-number {
+        font-size: 28px;
+      }
+
+      .mission-card-large {
+        padding: 40px 30px;
       }
 
       .stats-grid {
@@ -343,8 +477,20 @@
         flex-direction: column;
       }
 
-      .cta-buttons .btn {
+      .cta-buttons .btn,
+      .cta-buttons a {
         width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .about-hero__title {
+        font-size: 36px;
+      }
+
+      .hero-stats-mini {
+        flex-direction: column;
+        gap: 25px;
       }
     }
   </style>
@@ -364,9 +510,9 @@
 
       <nav class="nav">
         <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="#">Voluntariate</a>
-        <a class="nav__link" href="about.html">About</a>
-        <a class="nav__link" href="#">Contact</a>
+        <a class="nav__link" href="jobs.html">Voluntariate</a>
+        <a class="nav__link active" href="about.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
       </nav>
 
       <div class="header-cta">
@@ -376,52 +522,84 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero Section - REDESIGNED -->
     <section class="about-hero">
       <div class="container">
-        <h1 class="about-hero__title">Despre HelpHub</h1>
-        <p class="about-hero__subtitle">
-          Construim punți între inimile generoase și comunitățile care au nevoie de ajutor. 
-          Platforma noastră conectează voluntari pasionați cu organizații care schimbă lumea, 
-          o acțiune de voluntariat odată.
-        </p>
+        <div class="hero-content-wrapper">
+          <div class="hero-badge">
+            <span>✨ Platforma #1 pentru Voluntariat</span>
+          </div>
+          
+          <h1 class="about-hero__title">
+            Facem lumea mai bună,<br>
+            <span class="gradient-text">împreună</span>
+          </h1>
+          
+          <p class="about-hero__subtitle">
+            HelpHub conectează inimile generoase cu comunitățile care au nevoie de ajutor. 
+            Suntem podul între pasiune și impact, transformând fiecare acțiune de voluntariat 
+            într-o schimbare reală.
+          </p>
+          
+          <div class="hero-stats-mini">
+            <div class="mini-stat">
+              <span class="mini-stat-number">5K+</span>
+              <span class="mini-stat-label">Voluntari</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat-number">250+</span>
+              <span class="mini-stat-label">Organizații</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat-number">15K+</span>
+              <span class="mini-stat-label">Ore Impact</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Mission Section -->
+    <!-- Mission Section - REDESIGNED -->
     <section class="mission-section">
       <div class="container">
-        <h2 class="section-title">Misiunea Noastră</h2>
-        <p class="section-subtitle">
-          Credem că fiecare persoană are potențialul de a face diferența în comunitatea sa
-        </p>
+        <div class="mission-header">
+          <span class="section-badge">🎯 Misiunea Noastră</span>
+          <h2 class="section-title">De ce există HelpHub?</h2>
+          <p class="section-subtitle">
+            Credem că fiecare persoană are potențialul de a face diferența. 
+            Tehnologia ne ajută să transformăm această credință în realitate.
+          </p>
+        </div>
 
-        <div class="mission-grid">
-          <div class="mission-card">
-            <div class="mission-icon">🤝</div>
-            <h3>Conectare</h3>
+        <div class="mission-grid-new">
+          <div class="mission-card-large">
+            <div class="card-icon-large">🤝</div>
+            <h3>Conectăm oamenii</h3>
             <p>
-              Unim studenți, profesioniști și organizații non-profit într-o rețea puternică 
-              de schimbare socială și dezvoltare comunitară.
+              Construim o comunitate unde studenții, profesioniștii și organizațiile 
+              se întâlnesc pentru a crea impact social real. Fiecare conexiune contează.
             </p>
+            <div class="card-highlight"></div>
           </div>
 
-          <div class="mission-card">
-            <div class="mission-icon">💡</div>
-            <h3>Inovație</h3>
+          <div class="mission-card-large">
+            <div class="card-icon-large">💡</div>
+            <h3>Simplificăm procesul</h3>
             <p>
-              Folosim tehnologia pentru a simplifica procesul de voluntariat și a face 
-              implicarea socială accesibilă tuturor.
+              Tehnologia ne permite să facem voluntariatul accesibil tuturor. 
+              Cu câteva click-uri, poți găsi oportunitatea perfectă pentru tine.
             </p>
+            <div class="card-highlight"></div>
           </div>
 
-          <div class="mission-card">
-            <div class="mission-icon">🌍</div>
-            <h3>Impact</h3>
+          <div class="mission-card-large">
+            <div class="card-icon-large">🌍</div>
+            <h3>Măsurăm impactul</h3>
             <p>
-              Măsurăm și amplificăm impactul fiecărei ore de voluntariat pentru a crea 
-              schimbări durabile în comunitățile noastre.
+              Fiecare oră de voluntariat este importantă. Urmărim și amplificăm 
+              impactul pentru a crea schimbări durabile în comunități.
             </p>
+            <div class="card-highlight"></div>
           </div>
         </div>
       </div>
@@ -562,7 +740,7 @@
           </p>
           <div class="cta-buttons">
             <button class="btn btn--primary">Înregistrează-te Acum</button>
-            <button class="btn btn--ghost">Explorează Oportunități</button>
+            <a href="jobs.html" class="btn btn--ghost">Explorează Oportunități</a>
           </div>
         </div>
       </div>

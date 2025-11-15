@@ -12,16 +12,52 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <style>
-        /* Contact specific styles */
+        /* Hero Section - Redesigned */
         .contact-hero {
-            padding: 80px 0 60px;
+            padding: 100px 0 80px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 10px 24px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-light);
         }
 
         .contact-hero__title {
-            font-size: 56px;
+            font-size: 64px;
             font-weight: 800;
-            margin: 0 0 20px;
+            margin: 0 0 25px;
             background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -32,109 +68,78 @@
         .contact-hero__subtitle {
             font-size: 20px;
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            max-width: 650px;
+            margin: 0 auto;
             line-height: 1.7;
         }
 
-        /* Contact main section */
+        /* Main Contact Section - Completely Redesigned */
         .contact-main {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
-        .contact-grid {
+        .contact-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
             align-items: start;
         }
 
-        /* Contact info cards */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .info-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 30px;
-            border-radius: 18px;
+        /* Left Side - Contact Form */
+        .contact-form-wrapper {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(30px);
+            padding: 50px;
+            border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .info-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        .contact-form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
-        .info-card__icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .info-card__title {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 0 12px;
-            color: var(--text);
-        }
-
-        .info-card__text {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0 0 8px;
-        }
-
-        .info-card__link {
-            color: var(--primary-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .info-card__link:hover {
-            color: var(--accent-light);
-            text-decoration: underline;
-        }
-
-        /* Contact form */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        .form-header {
+            margin-bottom: 35px;
         }
 
         .form-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 0 10px;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 12px;
             color: var(--text);
         }
 
         .form-subtitle {
             color: var(--text-muted);
-            margin: 0 0 30px;
-            font-size: 15px;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .form-label {
             display: block;
             color: var(--text);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 14px;
         }
 
@@ -146,11 +151,11 @@
         .form-select,
         .form-textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
             color: var(--text);
-            padding: 14px 16px;
-            border-radius: 12px;
+            padding: 14px 18px;
+            border-radius: 14px;
             font-family: inherit;
             font-size: 15px;
             transition: all 0.3s ease;
@@ -161,8 +166,9 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--primary-light);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+            transform: translateY(-1px);
         }
 
         .form-input::placeholder,
@@ -172,7 +178,7 @@
 
         .form-textarea {
             resize: vertical;
-            min-height: 140px;
+            min-height: 150px;
         }
 
         .form-select {
@@ -183,37 +189,160 @@
             width: 100%;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-weight: 600;
+            padding: 18px 32px;
+            border-radius: 14px;
+            font-weight: 700;
             border: none;
             cursor: pointer;
             font-family: inherit;
             font-size: 16px;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
             transition: all 0.3s ease;
             margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--submit::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn--submit:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn--submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
         }
 
-        /* FAQ Section */
-        .faq-section {
-            padding: 60px 0;
-            background: rgba(59, 130, 246, 0.05);
+        /* Right Side - Contact Info Cards */
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card-modern {
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .info-card-modern:hover::before {
+            left: 100%;
+        }
+
+        .info-card-modern:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateX(8px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .info-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .info-content {
+            padding-left: 65px;
+        }
+
+        .info-text {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0 0 8px;
+            font-size: 15px;
+        }
+
+        .info-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .info-link:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* FAQ Section - Improved */
+        .faq-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-light);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .section-title {
-            font-size: 40px;
-            font-weight: 700;
-            text-align: center;
-            margin: 0 0 20px;
+            font-size: 44px;
+            font-weight: 800;
+            margin: 0 0 15px;
             background: linear-gradient(135deg, var(--text), var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -221,183 +350,267 @@
         }
 
         .section-subtitle {
-            text-align: center;
             color: var(--text-muted);
             font-size: 18px;
             max-width: 600px;
-            margin: 0 auto 50px;
+            margin: 0 auto;
         }
 
         .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
         }
 
         .faq-card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(20px);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 35px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .faq-card:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.25);
         }
 
-        .faq-card__question {
-            font-size: 18px;
+        .faq-question {
+            font-size: 19px;
             font-weight: 700;
             color: var(--primary-light);
-            margin: 0 0 12px;
+            margin: 0 0 14px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
         }
 
-        .faq-card__answer {
+        .faq-question::before {
+            content: '❓';
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.8;
             margin: 0;
             font-size: 15px;
         }
 
-        /* Social media section */
+        /* Social Section - Completely New */
         .social-section {
-            padding: 60px 0;
+            padding: 80px 0;
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.08) 0%, 
+                rgba(139, 92, 246, 0.06) 100%);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
         }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .social-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            padding: 16px 28px;
-            border-radius: 14px;
+            padding: 40px 30px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text);
+            text-align: center;
             text-decoration: none;
-            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .social-card-icon {
+            font-size: 48px;
             transition: all 0.3s ease;
         }
 
-        .social-link:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: var(--primary-light);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        .social-card:hover .social-card-icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
-        .social-icon {
-            font-size: 24px;
+        .social-card-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0;
         }
 
-        /* Partnership CTA */
+        .social-card-handle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Partnership Section - New Design */
         .partnership-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
-        .partnership-box {
+        .partnership-container {
             background: linear-gradient(135deg,
                     rgba(59, 130, 246, 0.15) 0%,
                     rgba(139, 92, 246, 0.12) 100%);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 60px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 70px 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
 
-        .partnership-box h2 {
-            font-size: 36px;
+        .partnership-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .partnership-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partnership-icon {
+            font-size: 64px;
+            margin-bottom: 25px;
+        }
+
+        .partnership-title {
+            font-size: 40px;
             font-weight: 800;
-            margin: 0 0 15px;
+            margin: 0 0 20px;
             background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .partnership-box p {
-            font-size: 17px;
+        .partnership-text {
+            font-size: 18px;
             color: var(--text-muted);
-            margin: 0 0 30px;
-            line-height: 1.7;
+            margin: 0 0 40px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .partnership-email {
+        .partnership-cta {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 14px 28px;
-            border-radius: 12px;
-            color: var(--primary-light);
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 18px 36px;
+            border-radius: 16px;
+            color: white;
             text-decoration: none;
-            font-weight: 600;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-weight: 700;
+            font-size: 17px;
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
             transition: all 0.3s ease;
         }
 
-        .partnership-email:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        .partnership-cta:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 18px 50px rgba(59, 130, 246, 0.7);
         }
 
-        @media (max-width: 900px) {
-            .contact-grid {
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .contact-wrapper {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
 
+            .contact-form-wrapper {
+                padding: 40px 35px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
             .contact-hero__title {
-                font-size: 40px;
+                font-size: 44px;
             }
 
-            .contact-form {
-                padding: 30px 25px;
+            .section-title {
+                font-size: 36px;
             }
 
-            .faq-grid {
-                grid-template-columns: 1fr;
+            .partnership-container {
+                padding: 50px 30px;
             }
 
-            .partnership-box {
-                padding: 40px 25px;
+            .partnership-title {
+                font-size: 32px;
             }
 
-            .partnership-box h2 {
-                font-size: 28px;
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 520px) {
             .contact-hero__title {
-                font-size: 32px;
+                font-size: 36px;
             }
 
-            .social-links {
-                flex-direction: column;
+            .contact-form-wrapper {
+                padding: 30px 25px;
             }
 
-            .social-link {
-                width: 100%;
-                justify-content: center;
+            .form-title {
+                font-size: 26px;
+            }
+
+            .info-card-modern {
+                padding: 25px;
+            }
+
+            .info-content {
+                padding-left: 0;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -419,7 +632,7 @@
                 <a class="nav__link" href="index.html">Home</a>
                 <a class="nav__link" href="jobs.html">Voluntariate</a>
                 <a class="nav__link" href="about.html">About</a>
-                <a class="nav__link" href="contact.html">Contact</a>
+                <a class="nav__link active" href="contact.html">Contact</a>
             </nav>
 
             <div class="header-cta">
@@ -432,176 +645,210 @@
         <!-- Hero Section -->
         <section class="contact-hero">
             <div class="container">
-                <h1 class="contact-hero__title">Contactează-ne</h1>
-                <p class="contact-hero__subtitle">
-                    Suntem aici să te ajutăm! Trimite-ne un mesaj și îți vom răspunde în cel mai scurt timp posibil.
-                </p>
+                <div class="hero-content">
+                    <div class="hero-badge">💬 Suntem aici pentru tine</div>
+                    <h1 class="contact-hero__title">Hai să vorbim!</h1>
+                    <p class="contact-hero__subtitle">
+                        Echipa HelpHub este gata să te ajute. Trimite-ne un mesaj și îți vom răspunde în cel mai scurt timp posibil.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Main Section -->
+        <!-- Main Contact Section -->
         <section class="contact-main">
             <div class="container">
-                <div class="contact-grid">
-                    <!-- Contact Info -->
-                    <div class="info-card">
-                        <span class="info-card__icon">📧</span>
-                        <h3 class="info-card__title">Email</h3>
-                        <p class="info-card__text">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mariacristina.hategan@ulbsibiu.ro"
-                                target="_blank" class="info-card__link">mariacristina.hategan@ulbsibiu.ro</a>
-                        </p>
-                        <p class="info-card__text">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=stefanianadia.stoian@ulbsibiu.ro" target="_blank"
-                                class="info-card__link">stefanianadia.stoian@ulbsibiu.ro</a>
-                        </p>
-                         <p class="info-card__text">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andreeai.avram@ulbsibiu.ro" target="_blank"
-                                class="info-card__link">andreeai.avram@ulbsibiu.ro</a>
-                        </p>
-                         <p class="info-card__text">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marialuiza.cojanu@ulbsibiu.ro" target="_blank"
-                                class="info-card__link">marialuiza.cojanu@ulbsibiu.ro</a>
-                        </p>
+                <div class="contact-wrapper">
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <div class="form-header">
+                            <h2 class="form-title">Trimite-ne un mesaj</h2>
+                            <p class="form-subtitle">Completează formularul și îți vom răspunde în maxim 24 de ore lucrătoare</p>
+                        </div>
+
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Prenume <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" placeholder="Ion" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Nume <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" placeholder="Popescu" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Email <span class="required">*</span>
+                                </label>
+                                <input type="email" class="form-input" placeholder="ion.popescu@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Telefon (opțional)</label>
+                                <input type="tel" class="form-input" placeholder="+40 721 123 456">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Tip solicitare <span class="required">*</span>
+                                </label>
+                                <select class="form-select" required>
+                                    <option value="">Selectează o opțiune</option>
+                                    <option value="volunteer">Sunt voluntar</option>
+                                    <option value="organization">Reprezint o organizație</option>
+                                    <option value="general">Întrebare generală</option>
+                                    <option value="support">Suport tehnic</option>
+                                    <option value="partnership">Parteneriat</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Mesaj <span class="required">*</span>
+                                </label>
+                                <textarea class="form-textarea" placeholder="Scrie mesajul tău aici..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn--submit">Trimite Mesaj</button>
+                        </form>
                     </div>
 
-                    <div class="info-card">
-                        <span class="info-card__icon">📞</span>
-                        <h3 class="info-card__title">Telefon</h3>
-                        <p class="info-card__text">
-                            <a href="tel:+40721123456" class="info-card__link">+40 721 123 456</a>
-                        </p>
-                        <p class="info-card__text" style="font-size: 14px; margin-top: 8px;">
-                            Luni - Vineri: 09:00 - 17:00
-                        </p>
-                    </div>
+                    <!-- Contact Info Cards -->
+                    <div class="contact-info-wrapper">
+                        <div class="info-card-modern">
+                            <div class="info-header">
+                                <div class="info-icon">📧</div>
+                                <h3 class="info-title">Email</h3>
+                            </div>
+                            <div class="info-content">
+                                <p class="info-text">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mariacristina.hategan@ulbsibiu.ro"
+                                        target="_blank" class="info-link">mariacristina.hategan@ulbsibiu.ro</a>
+                                </p>
+                                <p class="info-text">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=stefanianadia.stoian@ulbsibiu.ro" target="_blank"
+                                        class="info-link">stefanianadia.stoian@ulbsibiu.ro</a>
+                                </p>
+                                <p class="info-text">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andreeai.avram@ulbsibiu.ro" target="_blank"
+                                        class="info-link">andreeai.avram@ulbsibiu.ro</a>
+                                </p>
+                                <p class="info-text">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marialuiza.cojanu@ulbsibiu.ro" target="_blank"
+                                        class="info-link">marialuiza.cojanu@ulbsibiu.ro</a>
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="info-card">
-                        <span class="info-card__icon">📍</span>
-                        <h3 class="info-card__title">Adresă</h3>
-                        <p class="info-card__text">
-                            Str. Voluntarilor, Nr. 25<br>
-                            Sector 1, București<br>
-                            România, 010101
-                        </p>
-                    </div>
+                        <div class="info-card-modern">
+                            <div class="info-header">
+                                <div class="info-icon">📞</div>
+                                <h3 class="info-title">Telefon</h3>
+                            </div>
+                            <div class="info-content">
+                                <p class="info-text">
+                                    <a href="tel:+40721123456" class="info-link">+40 721 123 456</a>
+                                </p>
+                                <p class="info-text" style="font-size: 14px; margin-top: 8px;">
+                                    Luni - Vineri: 09:00 - 17:00
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="info-card">
-                        <span class="info-card__icon">🕒</span>
-                        <h3 class="info-card__title">Program</h3>
-                        <p class="info-card__text">
-                            <strong>Luni - Vineri:</strong> 09:00 - 17:00<br>
-                            <strong>Sâmbătă:</strong> 10:00 - 14:00<br>
-                            <strong>Duminică:</strong> Închis
-                        </p>
+                        <div class="info-card-modern">
+                            <div class="info-header">
+                                <div class="info-icon">📍</div>
+                                <h3 class="info-title">Locație</h3>
+                            </div>
+                            <div class="info-content">
+                                <p class="info-text">
+                                    Str. Voluntarilor, Nr. 25<br>
+                                    Sector 1, București<br>
+                                    România, 010101
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="info-card-modern">
+                            <div class="info-header">
+                                <div class="info-icon">🕒</div>
+                                <h3 class="info-title">Program</h3>
+                            </div>
+                            <div class="info-content">
+                                <p class="info-text">
+                                    <strong>Luni - Vineri:</strong> 09:00 - 17:00<br>
+                                    <strong>Sâmbătă:</strong> 10:00 - 14:00<br>
+                                    <strong>Duminică:</strong> Închis
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h2 class="form-title">Trimite-ne un Mesaj</h2>
-                    <p class="form-subtitle">Completează formularul și îți vom răspunde în maxim 24 de ore</p>
-
-                    <form>
-                        <div class="form-group">
-                            <label class="form-label">
-                                Nume complet <span class="required">*</span>
-                            </label>
-                            <input type="text" class="form-input" placeholder="Ion Popescu" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">
-                                Email <span class="required">*</span>
-                            </label>
-                            <input type="email" class="form-input" placeholder="ion.popescu@email.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Telefon (opțional)</label>
-                            <input type="tel" class="form-input" placeholder="+40 721 123 456">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">
-                                Tip solicitare <span class="required">*</span>
-                            </label>
-                            <select class="form-select" required>
-                                <option value="">Selectează o opțiune</option>
-                                <option value="volunteer">Sunt voluntar</option>
-                                <option value="organization">Reprezint o organizație</option>
-                                <option value="general">Întrebare generală</option>
-                                <option value="support">Suport tehnic</option>
-                                <option value="partnership">Parteneriat</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">
-                                Mesaj <span class="required">*</span>
-                            </label>
-                            <textarea class="form-textarea" placeholder="Scrie mesajul tău aici..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn--submit">Trimite Mesaj</button>
-                    </form>
-                </div>
-            </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
         <section class="faq-section">
             <div class="container">
-                <h2 class="section-title">Întrebări Frecvente</h2>
-                <p class="section-subtitle">
-                    Răspunsuri rapide la cele mai comune întrebări
-                </p>
+                <div class="section-header">
+                    <span class="section-badge">❔ FAQ</span>
+                    <h2 class="section-title">Întrebări Frecvente</h2>
+                    <p class="section-subtitle">
+                        Răspunsuri rapide la cele mai comune întrebări
+                    </p>
+                </div>
 
                 <div class="faq-grid">
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Cum mă înregistrez ca voluntar?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Cum mă înregistrez ca voluntar?</h3>
+                        <p class="faq-answer">
                             Dă click pe butonul "Sign Up" din header, completează formularul cu informațiile tale
                             și vei putea aplica imediat la oportunități.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Cum adaug o oportunitate de voluntariat?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Cum adaug o oportunitate de voluntariat?</h3>
+                        <p class="faq-answer">
                             Organizațiile verificate pot adăuga oportunități din panoul lor de administrare.
                             Contactează-ne pentru a deveni organizație parteneră.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Este platforma gratuită?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Este platforma gratuită?</h3>
+                        <p class="faq-answer">
                             Da! HelpHub este complet gratuit atât pentru voluntari, cât și pentru organizațiile
                             non-profit verificate.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Cum mă verific ca organizație?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Cum mă verific ca organizație?</h3>
+                        <p class="faq-answer">
                             Trimite-ne un email la partnerships@helphub.ro cu documentele organizației tale
                             (statut, CIF, acte doveditoare). Verificăm în 2-3 zile lucrătoare.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Pot anula o aplicație?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Pot anula o aplicație?</h3>
+                        <p class="faq-answer">
                             Da, poți anula oricând din profilul tău la secțiunea "Aplicațiile mele".
                             Te rugăm să anunți și organizația dacă este necesar.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-card__question">Primesc certificat de voluntariat?</h3>
-                        <p class="faq-card__answer">
+                        <h3 class="faq-question">Primesc certificat de voluntariat?</h3>
+                        <p class="faq-answer">
                             Certificatul este emis de organizația la care ai făcut voluntariat, nu de HelpHub.
                             Platforma noastră doar facilitează conexiunea.
                         </p>
@@ -613,27 +860,37 @@
         <!-- Social Media Section -->
         <section class="social-section">
             <div class="container">
-                <h2 class="section-title">Conectează-te cu Noi</h2>
-                <p class="section-subtitle">
-                    Urmărește-ne pe rețelele sociale pentru noutăți și povești inspiraționale
-                </p>
+                <div class="section-header">
+                    <span class="section-badge">🌐 Social Media</span>
+                    <h2 class="section-title">Conectează-te cu Noi</h2>
+                    <p class="section-subtitle">
+                        Urmărește-ne pe rețelele sociale pentru noutăți și povești inspiraționale
+                    </p>
+                </div>
 
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <span class="social-icon">📘</span>
-                        Facebook
+                <div class="social-grid">
+                    <a href="#" class="social-card">
+                        <span class="social-card-icon">📘</span>
+                        <h3 class="social-card-name">Facebook</h3>
+                        <p class="social-card-handle">@HelpHubRO</p>
                     </a>
-                    <a href="#" class="social-link">
-                        <span class="social-icon">📸</span>
-                        Instagram
+
+                    <a href="#" class="social-card">
+                        <span class="social-card-icon">📸</span>
+                        <h3 class="social-card-name">Instagram</h3>
+                        <p class="social-card-handle">@helphub.ro</p>
                     </a>
-                    <a href="#" class="social-link">
-                        <span class="social-icon">💼</span>
-                        LinkedIn
+
+                    <a href="#" class="social-card">
+                        <span class="social-card-icon">💼</span>
+                        <h3 class="social-card-name">LinkedIn</h3>
+                        <p class="social-card-handle">HelpHub Romania</p>
                     </a>
-                    <a href="#" class="social-link">
-                        <span class="social-icon">🐦</span>
-                        Twitter
+
+                    <a href="#" class="social-card">
+                        <span class="social-card-icon">🐦</span>
+                        <h3 class="social-card-name">Twitter</h3>
+                        <p class="social-card-handle">@HelpHub_RO</p>
                     </a>
                 </div>
             </div>
@@ -642,17 +899,20 @@
         <!-- Partnership CTA -->
         <section class="partnership-section">
             <div class="container">
-                <div class="partnership-box">
-                    <h2>Organizație Non-Profit?</h2>
-                    <p>
-                        Devino partenerul nostru și conectează-te cu mii de voluntari dedicați.
-                        Verificăm organizațiile pentru siguranța comunității noastre.
-                    </p>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=partnerships@helphub.ro" target="_blank"
-                        class="partnership-email">
-                        <span>📧</span>
-                        partnerships@helphub.ro
-                    </a>
+                <div class="partnership-container">
+                    <div class="partnership-content">
+                        <div class="partnership-icon">🤝</div>
+                        <h2 class="partnership-title">Organizație Non-Profit?</h2>
+                        <p class="partnership-text">
+                            Devino partenerul nostru și conectează-te cu mii de voluntari dedicați.
+                            Verificăm organizațiile pentru siguranța comunității noastre și oferim suport complet în tot procesul.
+                        </p>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=partnerships@helphub.ro" target="_blank"
+                            class="partnership-cta">
+                            <span>📧</span>
+                            Contactează-ne pentru Parteneriat
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -667,10 +927,10 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Form submission (placeholder)
+        // Form submission
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Mulțumim pentru mesaj! Îți vom răspunde în curând.');
+            alert('✅ Mulțumim pentru mesaj! Îți vom răspunde în curând.');
         });
     </script>
 </body>

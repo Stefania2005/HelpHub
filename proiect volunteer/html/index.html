@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ro">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -18,21 +18,21 @@
       <div class="brand">
         <div class="brand__logo" aria-hidden="true">
           <a href="index.html" class="logo">
-            <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img" />
+            <img src="logo.jpg" alt="Volunteer Logo" class="logo-img" />
           </a>
         </div>
         <span class="brand__text">HelpHub</span>
       </div>
 
       <nav class="nav">
-        <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="jobs.html">Voluntariate</a> <!-- Schimbă din # în jobs.html -->
+        <a class="nav__link active" href="index.html">Home</a>
+        <a class="nav__link" href="jobs.html">Volunteer</a>
         <a class="nav__link" href="about.html">About</a>
         <a class="nav__link" href="contact.html">Contact</a>
       </nav>
 
       <div class="header-cta">
-        <button class="btn btn--outline">Log in</button>
+        <button type="button" class="btn btn--outline">Log in</button>
       </div>
     </div>
   </header>
@@ -40,20 +40,20 @@
   <main>
     <section class="hero">
       <div class="container hero__inner">
-        <!-- chenar cu gradient păstrat -->
         <div class="hero__highlight">
           <div class="hero__left">
             <h1 class="hero__title">Volunteer<br><span class="hero__title--bold">Match</span></h1>
-            <p class="hero__subtitle">Connect students and organizations with volunteer opportunities</p>
+            <p class="hero__subtitle">Connect passionate volunteers with meaningful civic engagement opportunities in
+              your community</p>
 
             <div class="hero__actions">
-              <button class="btn btn--primary">Sign Up</button>
-              <button class="btn btn--ghost">Log In</button>
+              <button type="button" class="btn btn--primary">Sign Up</button>
+              <button type="button" class="btn btn--ghost">Log In</button>
             </div>
           </div>
 
           <div class="hero__right">
-            <img src="voluntariat.webp" alt="Voluntariat" class="hero-img">
+            <img src="voluntariat.webp" alt="Volunteers working together" class="hero-img">
           </div>
         </div>
       </div>
@@ -62,54 +62,164 @@
     <section class="search-section">
       <div class="container">
         <div class="search-box">
-          <input type="search" class="search-box__input" placeholder="Search for volunteer opportunities" />
-          <button class="btn btn--search">Search</button>
+          <input type="search" class="search-box__input"
+            placeholder="Search for volunteer opportunities by cause, location, or skill" />
+          <button type="button" class="btn btn--search">Search</button>
         </div>
       </div>
     </section>
 
+
     <section class="recent-section">
       <div class="container">
-        <h2 class="recent-section__title">Recent Volunteer Opportunities</h2>
-        <p class="recent-section__desc">Find opportunities based on your skills and interests</p>
+        <h2 class="recent-section__title">Featured Civic Volunteer Opportunities</h2>
+        <p class="recent-section__desc">Make a difference in your community through meaningful civic engagement</p>
 
         <div class="cards">
           <article class="card">
             <div class="card__content">
-              <h3 class="card__title">Community Clean-Up</h3>
-              <p class="card__meta"><strong>Organization:</strong> local</p>
-              <p class="card__meta">Posted: May 1, 2024</p>
+              <h3 class="card__title">Community Park Restoration Project</h3>
+              <p class="card__meta"><strong>Organization:</strong> Green City Initiative</p>
+              <p class="card__meta"><strong>Location:</strong> Downtown Community Park</p>
+              <p class="card__meta">Posted: November 10, 2025</p>
             </div>
             <div class="card__action">
-              <button class="btn btn--small">View</button>
+              <button type="button" class="btn btn--small">View Details</button>
             </div>
           </article>
 
           <article class="card">
             <div class="card__content">
-              <h3 class="card__title">Volunteren-Virlurta</h3>
-              <p class="card__meta"><strong>Organization:</strong> local</p>
-              <p class="card__meta">Posted: May 1, 2024</p>
+              <h3 class="card__title">Youth Mentorship Program</h3>
+              <p class="card__meta"><strong>Organization:</strong> Future Leaders Foundation</p>
+              <p class="card__meta"><strong>Location:</strong> Local High School</p>
+              <p class="card__meta">Posted: November 12, 2025</p>
             </div>
             <div class="card__action">
-              <button class="btn btn--small">View</button>
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Food Bank Distribution Support</h3>
+              <p class="card__meta"><strong>Organization:</strong> Community Food Network</p>
+              <p class="card__meta"><strong>Location:</strong> Central Food Bank</p>
+              <p class="card__meta">Posted: November 8, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Literacy Tutoring for Adults</h3>
+              <p class="card__meta"><strong>Organization:</strong> Read & Grow Learning Center</p>
+              <p class="card__meta"><strong>Location:</strong> Public Library - Main Branch</p>
+              <p class="card__meta">Posted: November 5, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Environmental Awareness Campaign</h3>
+              <p class="card__meta"><strong>Organization:</strong> Eco Warriors Collective</p>
+              <p class="card__meta"><strong>Location:</strong> City Center & Online</p>
+              <p class="card__meta">Posted: November 13, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Senior Citizen Tech Support</h3>
+              <p class="card__meta"><strong>Organization:</strong> Digital Inclusion Alliance</p>
+              <p class="card__meta"><strong>Location:</strong> Community Center</p>
+              <p class="card__meta">Posted: November 11, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Homeless Shelter Meal Preparation</h3>
+              <p class="card__meta"><strong>Organization:</strong> Hope & Shelter Foundation</p>
+              <p class="card__meta"><strong>Location:</strong> Downtown Shelter</p>
+              <p class="card__meta">Posted: November 9, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Community Garden Development</h3>
+              <p class="card__meta"><strong>Organization:</strong> Urban Harvest Project</p>
+              <p class="card__meta"><strong>Location:</strong> Eastside Neighborhood</p>
+              <p class="card__meta">Posted: November 14, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Animal Shelter Care Assistant</h3>
+              <p class="card__meta"><strong>Organization:</strong> Paws & Hearts Rescue</p>
+              <p class="card__meta"><strong>Location:</strong> County Animal Shelter</p>
+              <p class="card__meta">Posted: November 7, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__content">
+              <h3 class="card__title">Voter Registration Drive</h3>
+              <p class="card__meta"><strong>Organization:</strong> Democracy Works Coalition</p>
+              <p class="card__meta"><strong>Location:</strong> Multiple Campus Locations</p>
+              <p class="card__meta">Posted: November 6, 2025</p>
+            </div>
+            <div class="card__action">
+              <button class="btn btn--small">View Details</button>
             </div>
           </article>
         </div>
 
       </div>
     </section>
+    
   </main>
+
+  <section class="cta-section">
+  <div class="container">
+    <button type="button" class="cta-link btn-browse" onclick="location.href='jobs.html'">
+      Browse All Opportunities
+    </button>
+  </div>
+</section>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Volunteer Match</p>
+      <p>© <span id="year"></span> Volunteer Match — Empowering communities through civic engagement</p>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  
 </body>
 
 </html>
