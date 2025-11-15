@@ -43,6 +43,21 @@ body::before {
     animation: pulse 15s ease-in-out infinite;
 }
 
+body {
+    padding-top: 80px;
+}
+
+.container {
+    width: calc(100% - 40px);
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.form-container {
+    padding: 80px 0 80px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
@@ -102,8 +117,19 @@ body::after {
     }
 }
 
+.input-error {
+  border: 2px solid red !important;
+  background: #ffe6e6;
+}
+
+.input-success {
+  border: 2px solid #4caf50 !important;
+  background: #f0fff0;
+}
+
+
 .container {
-    max-width: 650px;
+    max-width: 1050px;
     margin: 60px auto;
     padding: 0 20px;
     animation: fadeInUp 0.8s ease-out;
@@ -115,7 +141,8 @@ body::after {
             rgba(59, 130, 246, 0.12) 50%,
             rgba(96, 165, 250, 0.1) 100%);
     border-radius: 24px;
-    padding: 50px;
+    padding: 80px;
+    margin-top: 120px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     box-shadow:

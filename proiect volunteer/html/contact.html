@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ro">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -32,8 +32,13 @@
         }
 
         @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .hero-content {
@@ -183,6 +188,16 @@
 
         .form-select {
             cursor: pointer;
+        }
+
+        .form-select option {
+            background: #1e293b;
+            color: var(--text);
+            padding: 10px;
+        }
+
+        .form-select option:hover {
+            background: var(--primary);
         }
 
         .btn--submit {
@@ -405,9 +420,9 @@
         /* Social Section - Completely New */
         .social-section {
             padding: 80px 0;
-            background: linear-gradient(135deg, 
-                rgba(59, 130, 246, 0.08) 0%, 
-                rgba(139, 92, 246, 0.06) 100%);
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, 0.08) 0%,
+                    rgba(139, 92, 246, 0.06) 100%);
         }
 
         .social-grid {
@@ -492,8 +507,13 @@
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .partnership-content {
@@ -622,7 +642,7 @@
             <div class="brand">
                 <div class="brand__logo" aria-hidden="true">
                     <a href="index.html" class="logo">
-                        <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img" />
+                        <img src="logo.jpg" alt="Volunteer Logo" class="logo-img" />
                     </a>
                 </div>
                 <span class="brand__text">HelpHub</span>
@@ -630,13 +650,14 @@
 
             <nav class="nav">
                 <a class="nav__link" href="index.html">Home</a>
-                <a class="nav__link" href="jobs.html">Voluntariate</a>
+                <a class="nav__link" href="jobs.html">Volunteer</a>
                 <a class="nav__link" href="about.html">About</a>
                 <a class="nav__link active" href="contact.html">Contact</a>
             </nav>
 
             <div class="header-cta">
-                <button class="btn btn--outline">Log in</button>
+                <button type="button" class="btn btn--outline" onclick="location.href='apply_now.html'">Apply
+                    Now</button>
             </div>
         </div>
     </header>
@@ -646,10 +667,11 @@
         <section class="contact-hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-badge">💬 Suntem aici pentru tine</div>
-                    <h1 class="contact-hero__title">Hai să vorbim!</h1>
+                    <div class="hero-badge">💬 We're here for you</div>
+                    <h1 class="contact-hero__title">Let's Talk!</h1>
                     <p class="contact-hero__subtitle">
-                        Echipa HelpHub este gata să te ajute. Trimite-ne un mesaj și îți vom răspunde în cel mai scurt timp posibil.
+                        The HelpHub team is ready to help you. Send us a message and we'll get back to you as soon as
+                        possible.
                     </p>
                 </div>
             </div>
@@ -662,24 +684,24 @@
                     <!-- Contact Form -->
                     <div class="contact-form-wrapper">
                         <div class="form-header">
-                            <h2 class="form-title">Trimite-ne un mesaj</h2>
-                            <p class="form-subtitle">Completează formularul și îți vom răspunde în maxim 24 de ore lucrătoare</p>
+                            <h2 class="form-title">Send Us a Message</h2>
+                            <p class="form-subtitle">Fill out the form and we'll respond within 24 business hours</p>
                         </div>
 
                         <form>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label">
-                                        Prenume <span class="required">*</span>
+                                        First Name <span class="required">*</span>
                                     </label>
-                                    <input type="text" class="form-input" placeholder="Ion" required>
+                                    <input type="text" class="form-input" placeholder="John" data-required="true">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">
-                                        Nume <span class="required">*</span>
+                                        Last Name <span class="required">*</span>
                                     </label>
-                                    <input type="text" class="form-input" placeholder="Popescu" required>
+                                    <input type="text" class="form-input" placeholder="Smith" data-required="true">
                                 </div>
                             </div>
 
@@ -687,36 +709,38 @@
                                 <label class="form-label">
                                     Email <span class="required">*</span>
                                 </label>
-                                <input type="email" class="form-input" placeholder="ion.popescu@email.com" required>
+                                <input type="email" class="form-input" placeholder="john.smith@email.com"
+                                    data-required="true">
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Telefon (opțional)</label>
-                                <input type="tel" class="form-input" placeholder="+40 721 123 456">
+                                <label class="form-label">Phone (optional)</label>
+                                <input type="tel" class="form-input" placeholder="+1 234 567 8900">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">
-                                    Tip solicitare <span class="required">*</span>
+                                    Request Type <span class="required">*</span>
                                 </label>
-                                <select class="form-select" required>
-                                    <option value="">Selectează o opțiune</option>
-                                    <option value="volunteer">Sunt voluntar</option>
-                                    <option value="organization">Reprezint o organizație</option>
-                                    <option value="general">Întrebare generală</option>
-                                    <option value="support">Suport tehnic</option>
-                                    <option value="partnership">Parteneriat</option>
+                                <select class="form-select" data-required="true">
+                                    <option value="">Select an option</option>
+                                    <option value="volunteer">I'm a volunteer</option>
+                                    <option value="organization">I represent an organization</option>
+                                    <option value="general">General question</option>
+                                    <option value="support">Technical support</option>
+                                    <option value="partnership">Partnership</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">
-                                    Mesaj <span class="required">*</span>
+                                    Message <span class="required">*</span>
                                 </label>
-                                <textarea class="form-textarea" placeholder="Scrie mesajul tău aici..." required></textarea>
+                                <textarea class="form-textarea" placeholder="Write your message here..."
+                                    data-required="true"></textarea>
                             </div>
 
-                            <button type="submit" class="btn--submit">Trimite Mesaj</button>
+                            <button type="submit" class="btn--submit">Send Message</button>
                         </form>
                     </div>
 
@@ -733,16 +757,16 @@
                                         target="_blank" class="info-link">mariacristina.hategan@ulbsibiu.ro</a>
                                 </p>
                                 <p class="info-text">
-                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=stefanianadia.stoian@ulbsibiu.ro" target="_blank"
-                                        class="info-link">stefanianadia.stoian@ulbsibiu.ro</a>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=stefanianadia.stoian@ulbsibiu.ro"
+                                        target="_blank" class="info-link">stefanianadia.stoian@ulbsibiu.ro</a>
                                 </p>
                                 <p class="info-text">
-                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andreeai.avram@ulbsibiu.ro" target="_blank"
-                                        class="info-link">andreeai.avram@ulbsibiu.ro</a>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andreeai.avram@ulbsibiu.ro"
+                                        target="_blank" class="info-link">andreeai.avram@ulbsibiu.ro</a>
                                 </p>
                                 <p class="info-text">
-                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marialuiza.cojanu@ulbsibiu.ro" target="_blank"
-                                        class="info-link">marialuiza.cojanu@ulbsibiu.ro</a>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marialuiza.cojanu@ulbsibiu.ro"
+                                        target="_blank" class="info-link">marialuiza.cojanu@ulbsibiu.ro</a>
                                 </p>
                             </div>
                         </div>
@@ -750,14 +774,14 @@
                         <div class="info-card-modern">
                             <div class="info-header">
                                 <div class="info-icon">📞</div>
-                                <h3 class="info-title">Telefon</h3>
+                                <h3 class="info-title">Phone</h3>
                             </div>
                             <div class="info-content">
                                 <p class="info-text">
                                     <a href="tel:+40721123456" class="info-link">+40 721 123 456</a>
                                 </p>
                                 <p class="info-text" style="font-size: 14px; margin-top: 8px;">
-                                    Luni - Vineri: 09:00 - 17:00
+                                    Monday - Friday: 09:00 AM - 05:00 PM
                                 </p>
                             </div>
                         </div>
@@ -765,13 +789,13 @@
                         <div class="info-card-modern">
                             <div class="info-header">
                                 <div class="info-icon">📍</div>
-                                <h3 class="info-title">Locație</h3>
+                                <h3 class="info-title">Location</h3>
                             </div>
                             <div class="info-content">
                                 <p class="info-text">
-                                    Str. Voluntarilor, Nr. 25<br>
-                                    Sector 1, București<br>
-                                    România, 010101
+                                    Volunteers Street, No. 25<br>
+                                    District 1, Bucharest<br>
+                                    Romania, 010101
                                 </p>
                             </div>
                         </div>
@@ -779,13 +803,13 @@
                         <div class="info-card-modern">
                             <div class="info-header">
                                 <div class="info-icon">🕒</div>
-                                <h3 class="info-title">Program</h3>
+                                <h3 class="info-title">Office Hours</h3>
                             </div>
                             <div class="info-content">
                                 <p class="info-text">
-                                    <strong>Luni - Vineri:</strong> 09:00 - 17:00<br>
-                                    <strong>Sâmbătă:</strong> 10:00 - 14:00<br>
-                                    <strong>Duminică:</strong> Închis
+                                    <strong>Monday - Friday:</strong> 09:00 AM - 05:00 PM<br>
+                                    <strong>Saturday:</strong> 10:00 AM - 02:00 PM<br>
+                                    <strong>Sunday:</strong> Closed
                                 </p>
                             </div>
                         </div>
@@ -799,58 +823,58 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-badge">❔ FAQ</span>
-                    <h2 class="section-title">Întrebări Frecvente</h2>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
                     <p class="section-subtitle">
-                        Răspunsuri rapide la cele mai comune întrebări
+                        Quick answers to the most common questions
                     </p>
                 </div>
 
                 <div class="faq-grid">
                     <div class="faq-card">
-                        <h3 class="faq-question">Cum mă înregistrez ca voluntar?</h3>
+                        <h3 class="faq-question">How do I register as a volunteer?</h3>
                         <p class="faq-answer">
-                            Dă click pe butonul "Sign Up" din header, completează formularul cu informațiile tale
-                            și vei putea aplica imediat la oportunități.
+                            Click the "Sign Up" button in the header, fill out the form with your information
+                            and you can apply to opportunities immediately.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-question">Cum adaug o oportunitate de voluntariat?</h3>
+                        <h3 class="faq-question">How do I add a volunteer opportunity?</h3>
                         <p class="faq-answer">
-                            Organizațiile verificate pot adăuga oportunități din panoul lor de administrare.
-                            Contactează-ne pentru a deveni organizație parteneră.
+                            Verified organizations can add opportunities from their admin panel.
+                            Contact us to become a partner organization.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-question">Este platforma gratuită?</h3>
+                        <h3 class="faq-question">Is the platform free?</h3>
                         <p class="faq-answer">
-                            Da! HelpHub este complet gratuit atât pentru voluntari, cât și pentru organizațiile
-                            non-profit verificate.
+                            Yes! HelpHub is completely free for both volunteers and verified
+                            non-profit organizations.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-question">Cum mă verific ca organizație?</h3>
+                        <h3 class="faq-question">How do I get verified as an organization?</h3>
                         <p class="faq-answer">
-                            Trimite-ne un email la partnerships@helphub.ro cu documentele organizației tale
-                            (statut, CIF, acte doveditoare). Verificăm în 2-3 zile lucrătoare.
+                            Send us an email at partnerships@helphub.ro with your organization's documents
+                            (bylaws, tax ID, proof of status). We verify within 2-3 business days.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-question">Pot anula o aplicație?</h3>
+                        <h3 class="faq-question">Can I cancel an application?</h3>
                         <p class="faq-answer">
-                            Da, poți anula oricând din profilul tău la secțiunea "Aplicațiile mele".
-                            Te rugăm să anunți și organizația dacă este necesar.
+                            Yes, you can cancel anytime from your profile under "My Applications".
+                            Please also notify the organization if necessary.
                         </p>
                     </div>
 
                     <div class="faq-card">
-                        <h3 class="faq-question">Primesc certificat de voluntariat?</h3>
+                        <h3 class="faq-question">Do I receive a volunteer certificate?</h3>
                         <p class="faq-answer">
-                            Certificatul este emis de organizația la care ai făcut voluntariat, nu de HelpHub.
-                            Platforma noastră doar facilitează conexiunea.
+                            The certificate is issued by the organization where you volunteered, not by HelpHub.
+                            Our platform only facilitates the connection.
                         </p>
                     </div>
                 </div>
@@ -862,9 +886,9 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-badge">🌐 Social Media</span>
-                    <h2 class="section-title">Conectează-te cu Noi</h2>
+                    <h2 class="section-title">Connect With Us</h2>
                     <p class="section-subtitle">
-                        Urmărește-ne pe rețelele sociale pentru noutăți și povești inspiraționale
+                        Follow us on social media for news and inspiring stories
                     </p>
                 </div>
 
@@ -902,15 +926,16 @@
                 <div class="partnership-container">
                     <div class="partnership-content">
                         <div class="partnership-icon">🤝</div>
-                        <h2 class="partnership-title">Organizație Non-Profit?</h2>
+                        <h2 class="partnership-title">Non-Profit Organization?</h2>
                         <p class="partnership-text">
-                            Devino partenerul nostru și conectează-te cu mii de voluntari dedicați.
-                            Verificăm organizațiile pentru siguranța comunității noastre și oferim suport complet în tot procesul.
+                            Become our partner and connect with thousands of dedicated volunteers.
+                            We verify organizations for our community's safety and provide full support throughout the
+                            process.
                         </p>
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=partnerships@helphub.ro" target="_blank"
                             class="partnership-cta">
                             <span>📧</span>
-                            Contactează-ne pentru Parteneriat
+                            Contact Us for Partnership
                         </a>
                     </div>
                 </div>
@@ -927,10 +952,38 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Form submission
+        // Form submission with validation
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('✅ Mulțumim pentru mesaj! Îți vom răspunde în curând.');
+
+            // Get all required inputs
+            const inputs = document.querySelectorAll('[data-required="true"]');
+            let allValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#ef4444';
+                    input.style.boxShadow = '0 0 0 4px rgba(239, 68, 68, 0.2)';
+                    allValid = false;
+
+                    // Reset border when user starts typing
+                    input.addEventListener('input', function () {
+                        this.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                        this.style.boxShadow = 'none';
+                    }, { once: true });
+
+                    // Reset border for select on change
+                    input.addEventListener('change', function () {
+                        this.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                        this.style.boxShadow = 'none';
+                    }, { once: true });
+                }
+            });
+
+            if (allValid) {
+                alert('✅ Thank you for your message! We will respond soon.');
+                document.querySelector('form').reset();
+            }
         });
     </script>
 </body>

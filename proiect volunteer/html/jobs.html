@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/style.css">
-  
+
   <style>
     /* Jobs specific styles */
     .jobs-hero {
@@ -123,11 +123,11 @@
       box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
     }
 
-    /* Job cards grid */
+    /* Job cards grid - 2 CARDS PER ROW */
     .jobs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
     }
 
     .job-card {
@@ -352,6 +352,7 @@
         opacity: 0;
         transform: translateY(50px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -524,6 +525,24 @@
       transform: translateY(-2px);
     }
 
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
+    .no-results h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
     @media (max-width: 768px) {
       .modal__content {
         padding: 30px 20px;
@@ -575,7 +594,7 @@
       <div class="brand">
         <div class="brand__logo" aria-hidden="true">
           <a href="index.html" class="logo">
-            <img src="logo.jpg" alt="Volunteer Logo" class="logo-img"/>
+            <img src="logo.jpg" alt="Volunteer Logo" class="logo-img" />
           </a>
         </div>
         <span class="brand__text">HelpHub</span>
@@ -583,13 +602,13 @@
 
       <nav class="nav">
         <a class="nav__link " href="index.html">Home</a>
-        <a class="nav__link active" href="jobs.html">Jobs</a>
+        <a class="nav__link active" href="jobs.html">Volunteer</a>
         <a class="nav__link " href="about.html">About</a>
         <a class="nav__link " href="contact.html">Contact</a>
       </nav>
 
       <div class="header-cta">
-        <button class="btn btn--outline">Log in</button>
+        <button type="button" class="btn btn--outline" onclick="location.href='apply_now.html'">Apply Now</button>
       </div>
     </div>
   </header>
@@ -609,7 +628,8 @@
     <section class="search-section">
       <div class="container">
         <div class="search-box">
-          <input type="search" class="search-box__input" placeholder="Search for volunteer opportunities..." />
+          <input type="search" id="searchInput" class="search-box__input"
+            placeholder="Search for volunteer opportunities (ex: animals, children, education)..." />
           <button class="btn btn--search">Search</button>
         </div>
       </div>
@@ -619,14 +639,14 @@
     <section class="filters-section">
       <div class="container">
         <div class="filters-container">
-          <button class="filter-btn active">All</button>
-          <button class="filter-btn">Education</button>
-          <button class="filter-btn">Environment</button>
-          <button class="filter-btn">Health</button>
-          <button class="filter-btn">Community</button>
-          <button class="filter-btn">Animals</button>
-          <button class="filter-btn">Sports</button>
-          <button class="filter-btn">Culture</button>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="education">Education</button>
+          <button class="filter-btn" data-filter="environment">Environment</button>
+          <button class="filter-btn" data-filter="health">Health</button>
+          <button class="filter-btn" data-filter="community">Community</button>
+          <button class="filter-btn" data-filter="animals">Animals</button>
+          <button class="filter-btn" data-filter="sports">Sports</button>
+          <button class="filter-btn" data-filter="culture">Culture</button>
         </div>
       </div>
     </section>
@@ -636,18 +656,14 @@
       <div class="container">
         <div class="jobs-header">
           <div class="jobs-count">
-            We found <strong><span id="total-count">18</span> opportunities</strong> for you
+            We found <strong><span id="total-count">30</span> opportunities</strong> for you
           </div>
-          <select class="sort-select">
-            <option>Sort by: Most Recent</option>
-            <option>Sort by: Most Popular</option>
-            <option>Sort by: Urgent</option>
-          </select>
+          
         </div>
 
         <div class="jobs-grid" id="jobs-grid">
           <!-- Job Card 1 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="education children kids tutoring learning teaching inequality school students youth">
             <div class="job-card__header">
               <div class="job-card__badge">New</div>
             </div>
@@ -669,7 +685,7 @@
           </article>
 
           <!-- Job Card 2 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="environment pollution cleaning nature parks outdoor waste recycling">
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
@@ -691,7 +707,7 @@
           </article>
 
           <!-- Job Card 3 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="children kids foster care youth mentorship support welfare community">
             <h3 class="job-card__title">Foster Care Support Advocate</h3>
             <p class="job-card__org">Children's Rights Foundation</p>
             <p class="job-card__location">Various Locations</p>
@@ -710,7 +726,7 @@
           </article>
 
           <!-- Job Card 4 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="technology digital education seniors elderly computer internet teaching community">
             <div class="job-card__header">
               <div class="job-card__badge">New</div>
             </div>
@@ -732,7 +748,7 @@
           </article>
 
           <!-- Job Card 5 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="animals pets dogs cats shelter rescue care wildlife protection">
             <h3 class="job-card__title">Animal Overpopulation Crisis Volunteer</h3>
             <p class="job-card__org">Shelter Overcrowding Task Force</p>
             <p class="job-card__location">City Shelter</p>
@@ -751,7 +767,7 @@
           </article>
 
           <!-- Job Card 6 -->
-          <article class="job-card">
+          <article class="job-card" data-keywords="food hunger poverty community social assistance families help">
             <h3 class="job-card__title">Food Insecurity Response Team</h3>
             <p class="job-card__org">End Hunger Coalition</p>
             <p class="job-card__location">District 2</p>
@@ -770,7 +786,7 @@
           </article>
 
           <!-- Job Card 7 -->
-          <article class="job-card">
+          <article class="job-card hidden" data-keywords="health healthcare medical hospital clinic patients care nursing">
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
@@ -792,7 +808,7 @@
           </article>
 
           <!-- Job Card 8 -->
-          <article class="job-card">
+          <article class="job-card hidden" data-keywords="culture heritage art history community preservation traditions events">
             <h3 class="job-card__title">Cultural Preservation Activist</h3>
             <p class="job-card__org">Heritage Under Threat Alliance</p>
             <p class="job-card__location">Old Town</p>
@@ -811,7 +827,7 @@
           </article>
 
           <!-- Job Card 9 -->
-          <article class="job-card">
+          <article class="job-card hidden" data-keywords="sports youth children kids coaching mentoring recreation fitness">
             <h3 class="job-card__title">Youth Opportunity Gap Coach</h3>
             <p class="job-card__org">Fair Futures Initiative</p>
             <p class="job-card__location">District 4</p>
@@ -829,10 +845,8 @@
             </div>
           </article>
 
-          <!-- HIDDEN CARDS - Will show when "Load More" is clicked -->
-          
           <!-- Job Card 10 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="homelessness housing community social help support outreach">
             <div class="job-card__header">
               <div class="job-card__badge">New</div>
             </div>
@@ -854,7 +868,7 @@
           </article>
 
           <!-- Job Card 11 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="food environment community garden agriculture farming sustainable">
             <h3 class="job-card__title">Food Desert Solutions Coordinator</h3>
             <p class="job-card__org">Healthy Access Project</p>
             <p class="job-card__location">Eastside Community Garden</p>
@@ -873,7 +887,7 @@
           </article>
 
           <!-- Job Card 12 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="environment climate emergency disaster relief community support">
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
@@ -895,7 +909,7 @@
           </article>
 
           <!-- Job Card 13 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="immigration community language legal support advocacy families">
             <h3 class="job-card__title">Immigration Rights Support Advocate</h3>
             <p class="job-card__org">Immigrant Justice Network</p>
             <p class="job-card__location">Community Center</p>
@@ -914,7 +928,7 @@
           </article>
 
           <!-- Job Card 14 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="youth children kids mentorship education prevention community support">
             <h3 class="job-card__title">At-Risk Youth Prevention Mentor</h3>
             <p class="job-card__org">Break the Cycle Initiative</p>
             <p class="job-card__location">Local Schools</p>
@@ -933,7 +947,7 @@
           </article>
 
           <!-- Job Card 15 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="environment water health education community advocacy">
             <div class="job-card__header">
               <div class="job-card__badge">New</div>
             </div>
@@ -955,7 +969,7 @@
           </article>
 
           <!-- Job Card 16 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="housing legal community support advocacy families">
             <h3 class="job-card__title">Eviction Prevention Legal Aid</h3>
             <p class="job-card__org">Housing Rights Defense</p>
             <p class="job-card__location">Downtown Legal Center</p>
@@ -974,7 +988,7 @@
           </article>
 
           <!-- Job Card 17 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="seniors elderly health care support community companionship">
             <h3 class="job-card__title">Elder Abuse Prevention Companion</h3>
             <p class="job-card__org">Senior Protection Services</p>
             <p class="job-card__location">Senior Living Center</p>
@@ -993,7 +1007,7 @@
           </article>
 
           <!-- Job Card 18 -->
-          <article class="job-card hidden">
+          <article class="job-card hidden" data-keywords="community advocacy democracy voting rights campaign">
             <div class="job-card__header">
               <div class="job-card__badge">Urgent</div>
             </div>
@@ -1010,6 +1024,249 @@
             </div>
             <div class="job-card__footer">
               <span class="job-card__date">Posted: 3 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 19 -->
+          <article class="job-card hidden" data-keywords="community transportation advocacy social support">
+            <h3 class="job-card__title">Public Transportation Equity Advocate</h3>
+            <p class="job-card__org">Transit Justice Coalition</p>
+            <p class="job-card__location">City Hall & Transit Stations</p>
+            <p class="job-card__description">
+              Address transportation inequality affecting low-income residents. Survey communities 
+              about transit needs and advocate for better service in underserved neighborhoods.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Transit Inequality</span>
+              <span class="job-tag">Advocacy</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 4 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 20 -->
+          <article class="job-card hidden" data-keywords="community social relations dialogue support mediation">
+            <div class="job-card__header">
+              <div class="job-card__badge">New</div>
+            </div>
+            <h3 class="job-card__title">Police-Community Relations Bridge Builder</h3>
+            <p class="job-card__org">Community Trust Initiative</p>
+            <p class="job-card__location">District 5 Community Center</p>
+            <p class="job-card__description">
+              Help rebuild trust between law enforcement and communities experiencing tension. 
+              Facilitate dialogue sessions and promote accountability reforms.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Community Relations</span>
+              <span class="job-tag">Mediation</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 1 day ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 21 -->
+          <article class="job-card hidden" data-keywords="community environment infrastructure advocacy documentation">
+            <h3 class="job-card__title">Infrastructure Decay Documentation Volunteer</h3>
+            <p class="job-card__org">Safe Streets Coalition</p>
+            <p class="job-card__location">Various Neighborhoods</p>
+            <p class="job-card__description">
+              Combat neglected infrastructure in marginalized areas. Document potholes, broken sidewalks, 
+              and unsafe conditions to pressure city officials for repairs.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Infrastructure Crisis</span>
+              <span class="job-tag">Documentation</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 5 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 22 -->
+          <article class="job-card hidden" data-keywords="health children education environment testing prevention community">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Lead Poisoning Prevention Educator</h3>
+            <p class="job-card__org">Children's Environmental Health Project</p>
+            <p class="job-card__location">Old Housing Districts</p>
+            <p class="job-card__description">
+              Address lead poisoning crisis in aging housing stock. Test homes, educate families 
+              about risks, and connect them with remediation resources.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Public Health Crisis</span>
+              <span class="job-tag">Testing</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: today</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 23 -->
+          <article class="job-card hidden" data-keywords="community business support education technology marketing">
+            <h3 class="job-card__title">Small Business Recovery Support</h3>
+            <p class="job-card__org">Local Economy Revival Network</p>
+            <p class="job-card__location">Main Street District</p>
+            <p class="job-card__description">
+              Combat the decline of local businesses facing corporate competition. Help small 
+              business owners with digital marketing, bookkeeping, and community outreach.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Economic Justice</span>
+              <span class="job-tag">Business Support</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 6 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 24 -->
+          <article class="job-card hidden" data-keywords="community legal workers rights advocacy support">
+            <h3 class="job-card__title">Wage Theft Prevention Legal Clinic</h3>
+            <p class="job-card__org">Workers Rights Defense Fund</p>
+            <p class="job-card__location">Labor Center</p>
+            <p class="job-card__description">
+              Fight wage theft affecting low-income workers. Assist employees with filing complaints 
+              about unpaid wages, denied breaks, and labor law violations.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Labor Rights</span>
+              <span class="job-tag">Legal Aid</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 1 week ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 25 -->
+          <article class="job-card hidden" data-keywords="education children community advocacy schools funding">
+            <div class="job-card__header">
+              <div class="job-card__badge">New</div>
+            </div>
+            <h3 class="job-card__title">School Funding Inequality Activist</h3>
+            <p class="job-card__org">Education Equity Alliance</p>
+            <p class="job-card__location">School Board Meetings</p>
+            <p class="job-card__description">
+              Address disparities in school funding between wealthy and poor districts. Attend 
+              board meetings, organize parents, and advocate for fair resource allocation.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Education Funding</span>
+              <span class="job-tag">Advocacy</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 2 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 26 -->
+          <article class="job-card hidden" data-keywords="community financial education counseling support advocacy">
+            <h3 class="job-card__title">Predatory Lending Protection Counselor</h3>
+            <p class="job-card__org">Financial Justice Center</p>
+            <p class="job-card__location">Community Resource Center</p>
+            <p class="job-card__description">
+              Combat predatory lending targeting vulnerable communities. Provide financial literacy 
+              education and help victims of payday loans and rent-to-own schemes.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Financial Exploitation</span>
+              <span class="job-tag">Counseling</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 3 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 27 -->
+          <article class="job-card hidden" data-keywords="health mothers women healthcare pregnancy support advocacy">
+            <div class="job-card__header">
+              <div class="job-card__badge">Urgent</div>
+            </div>
+            <h3 class="job-card__title">Maternal Health Disparity Navigator</h3>
+            <p class="job-card__org">Birth Equity Coalition</p>
+            <p class="job-card__location">Hospital & Home Visits</p>
+            <p class="job-card__description">
+              Address alarming maternal mortality rates in marginalized communities. Support 
+              expectant mothers with healthcare navigation, doula services, and advocacy.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Maternal Health</span>
+              <span class="job-tag">Healthcare Access</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: yesterday</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 28 -->
+          <article class="job-card hidden" data-keywords="housing community advocacy organizing support tenants">
+            <h3 class="job-card__title">Gentrification Displacement Preventer</h3>
+            <p class="job-card__org">Neighborhood Stability Alliance</p>
+            <p class="job-card__location">District 7</p>
+            <p class="job-card__description">
+              Fight displacement of long-time residents due to gentrification. Help tenants 
+              understand their rights, document harassment, and organize community resistance.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Housing Justice</span>
+              <span class="job-tag">Community Organizing</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 4 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 29 -->
+          <article class="job-card hidden" data-keywords="legal community support employment advocacy justice">
+            <h3 class="job-card__title">Criminal Record Expungement Assistant</h3>
+            <p class="job-card__org">Second Chance Legal Services</p>
+            <p class="job-card__location">Legal Aid Office</p>
+            <p class="job-card__description">
+              Help individuals overcome barriers from past convictions. Assist with expungement 
+              paperwork to remove obstacles to employment, housing, and education.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Criminal Justice Reform</span>
+              <span class="job-tag">Legal Support</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: 5 days ago</span>
+              <button class="btn--view">View Details</button>
+            </div>
+          </article>
+
+          <!-- Job Card 30 -->
+          <article class="job-card hidden" data-keywords="technology digital community education internet support families">
+            <div class="job-card__header">
+              <div class="job-card__badge">New</div>
+            </div>
+            <h3 class="job-card__title">Internet Access Gap Bridge Coordinator</h3>
+            <p class="job-card__org">Digital Inclusion Project</p>
+            <p class="job-card__location">Low-Income Housing Areas</p>
+            <p class="job-card__description">
+              Address the broadband access crisis. Help families without internet connect to 
+              affordable programs and set up community WiFi hotspots.
+            </p>
+            <div class="job-card__tags">
+              <span class="job-tag">Digital Divide</span>
+              <span class="job-tag">Technology</span>
+            </div>
+            <div class="job-card__footer">
+              <span class="job-card__date">Posted: today</span>
               <button class="btn--view">View Details</button>
             </div>
           </article>
@@ -1041,31 +1298,24 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Filter functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
+   
 
     // Load More functionality
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     const hiddenCards = document.querySelectorAll('.job-card.hidden');
     const totalCountSpan = document.getElementById('total-count');
-    
-    let currentlyShown = 9;
+
+    let currentlyShown = 6;
     const totalCards = document.querySelectorAll('.job-card').length;
 
     loadMoreBtn.addEventListener('click', () => {
       hiddenCards.forEach(card => {
         card.classList.remove('hidden');
       });
-      
+
       totalCountSpan.textContent = totalCards;
       loadMoreBtn.classList.add('hidden');
-      
+
       if (hiddenCards.length > 0) {
         hiddenCards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
@@ -1158,7 +1408,7 @@
     // Open modal with job details
     function openModal(title, org, location, posted, description, tags) {
       const details = jobDetails[title] || getDefaultJobDetails(title, org, location, posted, description, tags);
-      
+
       modalBody.innerHTML = `
         ${details.badge ? `<span class="modal__badge">${details.badge}</span>` : ''}
         <h2 class="modal__title">${title}</h2>
@@ -1212,11 +1462,11 @@
         </div>
 
         <div class="modal__actions">
-          <button class="btn--apply">Apply Now</button>
+          <button class="btn--apply" onclick="window.location.href='apply_now.html'">Apply Now</button>
           <button class="btn--contact" onclick="window.location.href='contact.html'">Contact Organization</button>
         </div>
       `;
-      
+
       modal.classList.add('show');
       document.body.style.overflow = 'hidden';
     }
@@ -1251,9 +1501,127 @@
         const posted = card.querySelector('.job-card__date').textContent.replace('Posted: ', '');
         const description = card.querySelector('.job-card__description').textContent;
         const tags = Array.from(card.querySelectorAll('.job-tag')).map(tag => tag.textContent);
-        
+
         openModal(title, org, location, posted, description, tags);
       }
+    });
+    // ============ SEARCH FUNCTIONALITY ============
+    const searchInput = document.getElementById('searchInput');
+    const allCards = document.querySelectorAll('.job-card');
+    const noResultsDiv = document.createElement('div');
+    noResultsDiv.className = 'no-results';
+    noResultsDiv.innerHTML = '<h3>No results found</h3><p>Try different keywords or clear the search</p>';
+    document.getElementById('jobs-grid').after(noResultsDiv);
+
+    // Search in real-time as user types
+    searchInput.addEventListener('input', performSearch);
+
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      allCards.forEach(card => {
+        // Get all text content from the card
+        const title = card.querySelector('.job-card__title').textContent.toLowerCase();
+        const org = card.querySelector('.job-card__org').textContent.toLowerCase();
+        const description = card.querySelector('.job-card__description').textContent.toLowerCase();
+        const tags = Array.from(card.querySelectorAll('.job-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+        const keywords = card.getAttribute('data-keywords') || '';
+
+        // Combine all searchable text
+        const searchableText = `${title} ${org} ${description} ${tags} ${keywords}`.toLowerCase();
+
+        // Show/hide based on search term
+        if (searchTerm === '' || searchableText.includes(searchTerm)) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Update count
+      document.getElementById('total-count').textContent = visibleCount;
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResultsDiv.classList.add('show');
+      } else {
+        noResultsDiv.classList.remove('show');
+      }
+
+      // Hide load more button when searching
+      if (searchTerm !== '') {
+        loadMoreBtn.classList.add('hidden');
+      } else {
+        // Show load more only if there are hidden cards
+        const hiddenCards = document.querySelectorAll('.job-card.hidden');
+        if (hiddenCards.length > 0) {
+          loadMoreBtn.classList.remove('hidden');
+        }
+      }
+    }
+    // ============ FILTER BUTTONS FUNCTIONALITY ============
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        // Get filter category
+        const filterCategory = btn.getAttribute('data-filter');
+
+        // Clear search input when using filters
+        searchInput.value = '';
+
+        let visibleCount = 0;
+
+        allCards.forEach(card => {
+          const keywords = card.getAttribute('data-keywords') || '';
+          const tags = Array.from(card.querySelectorAll('.job-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+          const title = card.querySelector('.job-card__title').textContent.toLowerCase();
+          const description = card.querySelector('.job-card__description').textContent.toLowerCase();
+
+          const allText = `${keywords} ${tags} ${title} ${description}`.toLowerCase();
+
+          // Show all cards if "All" is selected
+          if (filterCategory === 'all') {
+            card.classList.remove('hidden');
+            visibleCount++;
+          }
+          // Otherwise filter by category
+          else if (allText.includes(filterCategory)) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Update count
+        document.getElementById('total-count').textContent = visibleCount;
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+          noResultsDiv.classList.add('show');
+        } else {
+          noResultsDiv.classList.remove('show');
+        }
+
+        // Hide load more button when filtering
+        if (filterCategory !== 'all') {
+          loadMoreBtn.classList.add('hidden');
+        } else {
+          const hiddenCards = document.querySelectorAll('.job-card.hidden');
+          if (hiddenCards.length > 0) {
+            loadMoreBtn.classList.remove('hidden');
+          }
+        }
+      });
     });
   </script>
 </body>
