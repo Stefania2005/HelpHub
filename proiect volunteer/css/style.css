@@ -550,6 +550,33 @@ header .logo-img:hover {
   box-shadow:0 12px 35px rgba(59, 130, 246, 0.6);
 }
 
+.cta-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.cta-link {
+  text-decoration: none;
+}
+
+.btn-browse {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-size: 16px;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-browse:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+}
 /* Footer */
 .site-footer{
   padding:40px 0;
@@ -566,6 +593,7 @@ header .logo-img:hover {
   font-size:14px;
 }
 
+/* Responsive */
 @media (max-width: 900px){
   .hero__highlight{
     flex-direction:column;
@@ -581,6 +609,7 @@ header .logo-img:hover {
   .hero__title--bold{font-size:48px}
   .illustration{max-width:100%}
 }
+
 @media (max-width: 520px){
   .hero__title{font-size:32px}
   .hero__title--bold{font-size:40px}
