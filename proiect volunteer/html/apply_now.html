@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer Registration Form</title>
+    <link rel="stylesheet" href="style_apply.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body> <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">
+          <a href="index.html" class="logo">
+            <img src="logo.jpg" alt="Logo Voluntariat" class="logo-img" />
+          </a>
+        </div>
+        <span class="brand__text">HelpHub</span>
+      </div>
+
+      <nav class="nav">
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="jobs.html">Voluntariate</a> <!-- Schimbă din # în jobs.html -->
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <button class="btn btn--outline"><a href="apply_now.html"/></button>
+      </div>
+    </div>
+  </header>
+    <div class="container">
+      <div class="form-wrapper">
+        <h1>Volunteer Registration</h1>
+
+        <form id="volunteerForm">
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone *</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age *</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              min="16"
+              max="100"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="city">City *</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+
+          <div class="form-group">
+            <label for="interests">Areas of Interest *</label>
+            <select id="interests" name="interests" required>
+              <option value="">Select...</option>
+              <option value="education">Education</option>
+              <option value="environment">Environment</option>
+              <option value="social">Social Assistance</option>
+              <option value="animals">Animal Protection</option>
+              <option value="health">Health</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="availability">Availability *</label>
+            <select id="availability" name="availability" required>
+              <option value="">Select...</option>
+              <option value="weekend">Weekend</option>
+              <option value="weekdays">Weekdays</option>
+              <option value="anytime">Anytime</option>
+              <option value="occasionally">Occasionally</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="motivation"
+              >Why do you want to become a volunteer? *</label
+            >
+            <textarea id="motivation" name="motivation" required></textarea>
+          </div>
+
+          <button type="submit">Submit Application</button>
+
+          <div class="success-message" id="successMessage">
+            ✓ Thank you! Your application has been submitted successfully. We
+            will contact you soon!
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("volunteerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          this.style.display = "none";
+          document.getElementById("successMessage").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
